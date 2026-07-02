@@ -1,0 +1,20 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Working dirs (contain decrypted DBs and keys — never commit)
+jobs/
+output/
+
+# WhatsApp sensitive files — never commit
+*.db
+*.crypt15
+*.key
+
+# OS
+.DS_Store
+Thumbs.db
