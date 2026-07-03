@@ -15,9 +15,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   background:var(--bg);color:var(--text);min-height:100vh;padding:2rem 1rem}
 .wrap{max-width:900px;margin:0 auto}
 
-/* header */
-header{text-align:center;margin-bottom:2.5rem}
-.logo{display:flex;align-items:center;justify-content:center;gap:.7rem;margin-bottom:.5rem}
+/* ── header ── */
+header{text-align:center;margin-bottom:2rem}
+.logo{display:flex;align-items:center;justify-content:center;gap:.7rem;margin-bottom:.4rem}
 .logo svg{width:36px;height:36px}
 header h1{font-size:1.55rem;font-weight:700}
 header p{color:var(--muted);font-size:.88rem;margin-top:.3rem}
@@ -25,128 +25,197 @@ header p{color:var(--muted);font-size:.88rem;margin-top:.3rem}
   border:1px solid #374151;border-radius:20px;padding:.3rem .8rem;
   font-size:.76rem;color:#6ee7b7;margin-top:.6rem}
 
-/* upload grid */
+/* ── guide accordion ── */
+.guide{background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:1.4rem;overflow:hidden}
+.guide-toggle{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 1.1rem;cursor:pointer;user-select:none;
+  font-weight:600;font-size:.92rem;
+}
+.guide-toggle:hover{background:#1c2128}
+.guide-toggle .badge-new{
+  background:#1f3a2f;color:#56d364;border:1px solid #2d6a4f;
+  font-size:.7rem;font-weight:700;padding:.15rem .5rem;border-radius:4px;
+  letter-spacing:.04em;
+}
+.guide-chevron{transition:transform .25s;color:var(--muted);flex-shrink:0}
+.guide-chevron.open{transform:rotate(180deg)}
+.guide-body{display:none;padding:0 1.1rem 1.2rem}
+.guide-body.open{display:block}
+
+/* time estimate banner */
+.time-banner{
+  display:flex;align-items:center;gap:.8rem;
+  background:#1c1f26;border:1px solid #30363d;border-radius:8px;
+  padding:.7rem 1rem;margin-bottom:1.2rem;font-size:.84rem;
+}
+.time-banner .clock{font-size:1.3rem;flex-shrink:0}
+.time-banner strong{color:var(--text)}
+.time-banner span{color:var(--muted)}
+
+/* step blocks inside guide */
+.guide-steps{display:flex;flex-direction:column;gap:1.1rem;margin-top:.2rem}
+.guide-step{display:flex;gap:.9rem;align-items:flex-start}
+.step-num{
+  width:26px;height:26px;border-radius:50%;background:var(--accent);
+  color:#000;font-size:.75rem;font-weight:800;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;margin-top:.1rem;
+}
+.step-body h4{font-size:.88rem;font-weight:700;margin-bottom:.3rem}
+.step-body p,.step-body li{font-size:.82rem;color:var(--muted);line-height:1.6}
+.step-body ul{padding-left:1rem;margin-top:.2rem}
+.step-body .path{
+  display:block;background:#010409;border:1px solid var(--border);
+  border-radius:6px;padding:.45rem .7rem;font-family:'Courier New',monospace;
+  font-size:.75rem;color:#79c0ff;margin:.4rem 0;word-break:break-all;
+}
+.step-body .or{
+  display:flex;align-items:center;gap:.5rem;color:var(--muted);
+  font-size:.75rem;margin:.3rem 0;
+}
+.step-body .or::before,.step-body .or::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+.tip{
+  display:flex;gap:.5rem;background:#1a1f0a;border:1px solid #3a4a10;
+  border-radius:6px;padding:.5rem .7rem;margin-top:.5rem;
+  font-size:.78rem;color:#b5cc6a;align-items:flex-start;
+}
+.tip .ti{flex-shrink:0;margin-top:.05rem}
+.warn{
+  display:flex;gap:.5rem;background:#1a1400;border:1px solid #4a3800;
+  border-radius:6px;padding:.5rem .7rem;margin-top:.5rem;
+  font-size:.78rem;color:#d29922;align-items:flex-start;
+}
+.divider{height:1px;background:var(--border);margin:1rem 0}
+.phase-times{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:.5rem;margin-top:.6rem}
+.pt{background:#010409;border:1px solid var(--border);border-radius:6px;
+  padding:.45rem .7rem;font-size:.78rem;display:flex;justify-content:space-between}
+.pt .pname{color:var(--muted)}
+.pt .pdur{color:var(--accent);font-weight:600}
+
+/* ── upload grid ── */
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
 @media(max-width:540px){.grid{grid-template-columns:1fr}}
+.col-label{font-size:.72rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);margin-bottom:.5rem;padding-left:.2rem}
 .dropzone{
   background:var(--surface);border:2px dashed var(--border);
-  border-radius:var(--radius);padding:1.3rem 1rem;text-align:center;
+  border-radius:var(--radius);padding:1.2rem 1rem;text-align:center;
   cursor:pointer;transition:.2s;position:relative;
 }
 .dropzone:hover,.dropzone.dragover{border-color:var(--accent);background:#0d2318}
 .dropzone.filled{border-style:solid;border-color:var(--accent);background:#0d2318}
 .dropzone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.dz-icon{font-size:1.5rem;margin-bottom:.3rem}
-.dz-label{font-weight:600;font-size:.92rem;margin-bottom:.15rem}
-.dz-hint{color:var(--muted);font-size:.76rem}
-.dz-filename{color:var(--accent);font-size:.76rem;margin-top:.35rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-
-/* optional media path */
-.opt-section{margin-bottom:1.2rem}
-.opt-section label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:.4rem}
-.opt-section input[type=text]{
-  width:100%;background:var(--surface);border:1.5px solid var(--border);
-  border-radius:var(--radius);padding:.65rem .9rem;color:var(--text);
-  font-size:.88rem;outline:none;transition:.2s;
+.dz-icon{font-size:1.4rem;margin-bottom:.25rem}
+.dz-label{font-weight:700;font-size:.9rem;margin-bottom:.1rem}
+.dz-hint{color:var(--muted);font-size:.75rem;line-height:1.4}
+.dz-filename{color:var(--accent);font-size:.73rem;margin-top:.3rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dz-how{
+  display:inline-block;margin-top:.4rem;font-size:.7rem;color:var(--accent2);
+  text-decoration:underline;cursor:pointer;
 }
-.opt-section input[type=text]:focus{border-color:var(--accent)}
-.opt-section .hint{font-size:.75rem;color:var(--muted);margin-top:.3rem}
+
+/* phone-column headers */
+.phone-cols{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:.4rem}
+@media(max-width:540px){.phone-cols{grid-template-columns:1fr}}
+.phone-col-head{
+  background:#1a2035;border:1px solid #2d3a5e;border-radius:8px;
+  padding:.5rem .8rem;font-size:.8rem;font-weight:600;text-align:center;color:#79c0ff;
+}
 
 /* start button */
 #btn-start{
   width:100%;padding:.82rem;border:none;border-radius:var(--radius);
   background:var(--accent);color:#000;font-size:1rem;font-weight:700;
-  cursor:pointer;transition:.15s;margin-bottom:1.5rem;
+  cursor:pointer;transition:.15s;margin-top:.8rem;
 }
 #btn-start:hover:not(:disabled){background:#20b958}
 #btn-start:disabled{opacity:.35;cursor:not-allowed}
+.start-note{text-align:center;font-size:.76rem;color:var(--muted);margin-top:.5rem}
 
-/* process panel */
+/* ── process panel ── */
 #process-panel{display:none}
-
-/* phase stepper — 6 phases */
-.phases{display:flex;align-items:flex-start;margin-bottom:1.4rem;overflow-x:auto;padding-bottom:.3rem}
-.phase-wrap{display:flex;flex-direction:column;align-items:center;min-width:60px}
+.phases{display:flex;align-items:flex-start;margin:1.4rem 0 1.1rem;overflow-x:auto;padding-bottom:.2rem}
+.phase-wrap{display:flex;flex-direction:column;align-items:center;min-width:56px}
 .phase-dot{
   width:30px;height:30px;border-radius:50%;border:2px solid var(--border);
-  display:flex;align-items:center;justify-content:center;font-size:.7rem;
+  display:flex;align-items:center;justify-content:center;font-size:.68rem;
   font-weight:700;flex-shrink:0;transition:.3s;
 }
 .phase-dot.active{border-color:var(--accent);background:#0d2318;color:var(--accent)}
 .phase-dot.done{border-color:var(--accent);background:var(--accent);color:#000}
 .phase-dot.error{border-color:var(--red);background:var(--red);color:#fff}
-.phase-connector{flex:1;height:2px;background:var(--border);margin:14px .2rem 0;transition:.3s;min-width:16px}
+.phase-connector{flex:1;height:2px;background:var(--border);margin:13px .15rem 0;transition:.3s;min-width:14px}
 .phase-connector.done{background:var(--accent)}
-.phase-label{font-size:.65rem;color:var(--muted);margin-top:.3rem;text-align:center;white-space:nowrap}
+.phase-label{font-size:.62rem;color:var(--muted);margin-top:.28rem;text-align:center;white-space:nowrap}
 
-/* progress bar */
-.progress-wrap{margin-bottom:1rem}
+/* progress */
+.progress-wrap{margin-bottom:.9rem}
 .progress-bar-outer{background:var(--surface);border:1px solid var(--border);border-radius:20px;height:7px;overflow:hidden}
 .progress-bar-inner{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:20px;width:0%;transition:width .4s ease}
-.progress-label{font-size:.78rem;color:var(--muted);margin-top:.4rem}
+.progress-meta{display:flex;justify-content:space-between;margin-top:.35rem}
+.progress-label{font-size:.78rem;color:var(--muted)}
+.progress-eta{font-size:.75rem;color:var(--yellow)}
 
 /* log */
 .log-panel{
   background:#010409;border:1px solid var(--border);border-radius:var(--radius);
-  padding:.9rem;height:180px;overflow-y:auto;font-family:'Courier New',monospace;
-  font-size:.75rem;margin-bottom:1.4rem;
+  padding:.8rem;height:160px;overflow-y:auto;font-family:'Courier New',monospace;
+  font-size:.74rem;margin-bottom:1.3rem;
 }
-.log-line{padding:.08rem 0;line-height:1.5}
-.log-line.info{color:#79c0ff}.log-line.ok{color:var(--accent)}
+.log-line{padding:.07rem 0;line-height:1.5}
+.log-line.info{color:#c9d1d9}.log-line.ok{color:var(--accent)}
 .log-line.warn{color:var(--yellow)}.log-line.err{color:var(--red)}
+.log-toggle{font-size:.72rem;color:var(--muted);cursor:pointer;text-decoration:underline;margin-bottom:.5rem;display:inline-block}
 
 /* gate cards */
-.gates{display:flex;flex-direction:column;gap:.9rem}
+.gates{display:flex;flex-direction:column;gap:.8rem}
 .gate-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
 .gate-card.active{border-color:var(--accent)}
-.gate-header{display:flex;align-items:center;gap:.7rem;padding:.75rem 1rem;cursor:pointer;user-select:none}
+.gate-header{display:flex;align-items:center;gap:.65rem;padding:.7rem .95rem;cursor:pointer;user-select:none}
 .gate-header:hover{background:#1c2128}
-.gate-num{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#000;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.gate-title{font-weight:600;font-size:.88rem;flex:1}
-.gate-chevron{color:var(--muted);transition:.2s;width:16px;height:16px}
+.gate-num{width:21px;height:21px;border-radius:50%;background:var(--accent);color:#000;font-size:.68rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.gate-title{font-weight:600;font-size:.86rem;flex:1}
+.gate-summary{font-size:.76rem;color:var(--muted);margin-right:.5rem}
+.gate-chevron{color:var(--muted);transition:.2s;width:14px;height:14px;flex-shrink:0}
 .gate-chevron.open{transform:rotate(180deg)}
-.gate-body{padding:0 1rem 1rem;display:none}
+.gate-body{padding:0 .95rem .95rem;display:none}
 .gate-body.open{display:block}
 
 /* gate internals */
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.7rem;margin-bottom:.8rem}
-.stat-box{background:#010409;border:1px solid var(--border);border-radius:8px;padding:.65rem .85rem}
-.stat-box .val{font-size:1rem;font-weight:700;color:var(--accent)}
-.stat-box .lbl{font-size:.7rem;color:var(--muted);margin-top:.1rem}
-.diff-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:.4rem}
-.diff-table th{text-align:left;padding:.35rem .5rem;color:var(--muted);border-bottom:1px solid var(--border)}
-.diff-table td{padding:.3rem .5rem;border-bottom:1px solid #21262d}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.6rem;margin-bottom:.7rem}
+.stat-box{background:#010409;border:1px solid var(--border);border-radius:8px;padding:.6rem .8rem}
+.stat-box .val{font-size:.95rem;font-weight:700;color:var(--accent)}
+.stat-box .lbl{font-size:.68rem;color:var(--muted);margin-top:.1rem}
+.diff-table{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:.4rem}
+.diff-table th{text-align:left;padding:.3rem .5rem;color:var(--muted);border-bottom:1px solid var(--border)}
+.diff-table td{padding:.28rem .5rem;border-bottom:1px solid #21262d}
 .diff-table tr:last-child td{border:none}
-.tag{display:inline-block;padding:.1rem .4rem;border-radius:4px;font-size:.7rem;font-weight:600}
+.tag{display:inline-block;padding:.1rem .38rem;border-radius:4px;font-size:.68rem;font-weight:600}
 .tag.new{background:#1f4a2f;color:#56d364}.tag.old{background:#3d1a1a;color:#f85149}.tag.mod{background:#3d2f00;color:#d29922}
-.year-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:.45rem;margin-top:.5rem}
-.year-box{background:#010409;border:1px solid var(--border);border-radius:6px;padding:.45rem .65rem;font-size:.78rem}
-.year-box .yr{color:var(--muted);font-size:.7rem}.year-box .cnt{font-weight:600}
+.year-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:.4rem;margin-top:.45rem}
+.year-box{background:#010409;border:1px solid var(--border);border-radius:6px;padding:.4rem .6rem;font-size:.76rem}
+.year-box .yr{color:var(--muted);font-size:.68rem}.year-box .cnt{font-weight:600}
+.tech-toggle{font-size:.72rem;color:var(--muted);cursor:pointer;text-decoration:underline;margin-top:.6rem;display:inline-block}
 
-/* done panel */
-#done-panel{display:none;margin-top:1.4rem}
-.done-card{background:linear-gradient(135deg,#0d2318,#082e1c);border:1px solid var(--accent);border-radius:var(--radius);padding:1.8rem;text-align:center}
-.done-card h2{font-size:1.25rem;margin-bottom:.35rem}
-.done-card p{color:var(--muted);font-size:.85rem;margin-bottom:1.2rem}
-.dl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.7rem;margin-bottom:.9rem}
-.dl-btn{
-  display:flex;align-items:center;justify-content:center;gap:.5rem;
-  padding:.65rem 1rem;border:1.5px solid var(--accent);border-radius:var(--radius);
-  background:transparent;color:var(--accent);font-size:.85rem;font-weight:600;
-  cursor:pointer;transition:.15s;text-decoration:none;
-}
+/* done */
+#done-panel{display:none;margin-top:1.3rem}
+.done-card{background:linear-gradient(135deg,#0d2318,#082e1c);border:1px solid var(--accent);border-radius:var(--radius);padding:1.6rem;text-align:center}
+.done-card h2{font-size:1.2rem;margin-bottom:.3rem}
+.done-card p{color:var(--muted);font-size:.83rem;margin-bottom:1.1rem}
+.dl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.6rem;margin-bottom:.8rem}
+.dl-btn{display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.6rem 1rem;border:1.5px solid var(--accent);border-radius:var(--radius);background:transparent;color:var(--accent);font-size:.83rem;font-weight:600;cursor:pointer;transition:.15s;text-decoration:none}
 .dl-btn:hover{background:var(--accent);color:#000}
-.dl-btn.primary{background:var(--accent);color:#000;border-color:var(--accent)}
+.dl-btn.primary{background:var(--accent);color:#000}
 .dl-btn.primary:hover{background:#20b958}
-.dl-btn-all{
-  width:100%;padding:.7rem;border:none;border-radius:var(--radius);
-  background:#1f2937;color:var(--text);font-size:.88rem;font-weight:600;
-  cursor:pointer;transition:.15s;
-}
+.dl-btn-all{width:100%;padding:.65rem;border:none;border-radius:var(--radius);background:#1f2937;color:var(--text);font-size:.85rem;font-weight:600;cursor:pointer;transition:.15s}
 .dl-btn-all:hover{background:#374151}
 
 /* error */
-#error-panel{display:none;background:#1a0a0a;border:1px solid var(--red);border-radius:var(--radius);padding:1rem;margin-top:1rem;color:var(--red);font-size:.84rem;white-space:pre-wrap}
+#error-panel{display:none;background:#1a0a0a;border:1px solid var(--red);border-radius:var(--radius);padding:1rem;margin-top:1rem;color:var(--red);font-size:.82rem;white-space:pre-wrap}
 
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:transparent}
@@ -156,6 +225,7 @@ header p{color:var(--muted);font-size:.88rem;margin-top:.3rem}
 <body>
 <div class="wrap">
 
+<!-- ── Header ── -->
 <header>
   <div class="logo">
     <svg viewBox="0 0 48 48" fill="none">
@@ -166,60 +236,167 @@ header p{color:var(--muted);font-size:.88rem;margin-top:.3rem}
     </svg>
     <h1>WhatsApp Backup Merger</h1>
   </div>
-  <p>Decrypt · Merge · Re-encrypt · Media plan · Restore guide</p>
-  <div class="badge">100% local — nothing leaves your machine</div>
+  <p>Combine 11 years of chat history into one backup — runs entirely on your computer</p>
+  <div class="badge">&#128274; 100% local &mdash; nothing is uploaded anywhere</div>
 </header>
 
-<!-- ── Upload ── -->
+<!-- ── Upload section ── -->
 <section id="upload-section">
 
+  <!-- Guide accordion -->
+  <div class="guide">
+    <div class="guide-toggle" onclick="toggleGuide()">
+      <span>&#9432;&nbsp; How to find your files &amp; keys <span class="badge-new">READ FIRST</span></span>
+      <svg class="guide-chevron open" id="guide-chev" viewBox="0 0 16 16" width="16" fill="currentColor">
+        <path d="M4.427 6.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.25 6h-6.5a.25.25 0 00-.323.427z"/>
+      </svg>
+    </div>
+
+    <div class="guide-body open" id="guide-body">
+
+      <!-- Time estimate -->
+      <div class="time-banner">
+        <span class="clock">&#9201;</span>
+        <div>
+          <strong>Estimated time: 3 – 15 minutes</strong><br>
+          <span>Depends on how many messages you have. Sit back after clicking Start.</span>
+        </div>
+      </div>
+
+      <div class="phase-times">
+        <div class="pt"><span class="pname">Decryption (x2)</span><span class="pdur">~1 min</span></div>
+        <div class="pt"><span class="pname">Schema check</span><span class="pdur">~5 sec</span></div>
+        <div class="pt"><span class="pname">Merge</span><span class="pdur">1 – 10 min</span></div>
+        <div class="pt"><span class="pname">Re-encryption</span><span class="pdur">~1 min</span></div>
+        <div class="pt"><span class="pname">Media + report</span><span class="pdur">~30 sec</span></div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="guide-steps">
+
+        <!-- Step 1 -->
+        <div class="guide-step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Get the backup files from each phone</h4>
+            <p>You need <strong>two files</strong> named <code style="color:#79c0ff">msgstore.db.crypt15</code> — one from each phone.</p>
+            <ul>
+              <li>Connect the phone to your PC via USB cable</li>
+              <li>On the phone: swipe down the notification bar &rarr; tap <strong>Charging via USB</strong> &rarr; select <strong>File Transfer</strong></li>
+              <li>On your PC: open File Explorer and find the phone under <em>This PC</em></li>
+              <li>Navigate to the backup folder:</li>
+            </ul>
+            <span class="path">&#128241; Android 11 or newer:<br>Internal Storage &rarr; Android &rarr; media &rarr; com.whatsapp &rarr; WhatsApp &rarr; Backups &rarr; msgstore.db.crypt15</span>
+            <div class="or">or</div>
+            <span class="path">&#128241; Android 10 or older:<br>Internal Storage &rarr; WhatsApp &rarr; Databases &rarr; msgstore.db.crypt15</span>
+            <p>Copy the file and rename it so you can tell them apart, e.g. <code style="color:#79c0ff">old_backup.crypt15</code> and <code style="color:#79c0ff">new_backup.crypt15</code>.</p>
+            <div class="tip"><span class="ti">&#128161;</span><span>Not sure which Android version? Open Settings &rarr; About phone &rarr; Android version.</span></div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="guide-step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Get the encryption key from each phone</h4>
+            <p>Each backup is locked with a secret key. You need the key for <strong>each phone separately</strong>.</p>
+            <p style="margin-top:.4rem"><strong>On the phone, open WhatsApp:</strong></p>
+            <span class="path">&#9881;&#65039; Settings &rarr; Chats &rarr; Chat Backup &rarr; scroll to the bottom &rarr; Backup encryption key &rarr; Export</span>
+            <p>This exports a file called <code style="color:#79c0ff">encrypted_backup.key</code>. Copy it to your PC the same way as the backup file above.</p>
+            <div class="or">or</div>
+            <p>If you see a <strong>64-character code</strong> on screen instead of an Export button, copy all the characters and paste them into a plain <code style="color:#79c0ff">.txt</code> file — that works too.</p>
+            <div class="warn"><span>&#9888;&#65039;</span><span>The key for the old phone is <em>different</em> from the key for the new phone. Do not mix them up.</span></div>
+            <div class="tip"><span class="ti">&#128161;</span><span>"Backup encryption key" only appears if you have end-to-end encrypted backups turned on. If you don't see it, go to Chat Backup &rarr; End-to-end Encrypted Backup &rarr; Turn on, then come back.</span></div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="guide-step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Upload the 4 files below</h4>
+            <p>Left column = your <strong>old phone</strong>. Right column = your <strong>new phone</strong>. Each column needs its backup file and its key file. That's it — click <strong>Start Merge</strong> and wait.</p>
+            <div class="tip"><span class="ti">&#128161;</span><span>You can drag files straight from File Explorer and drop them onto the boxes below.</span></div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="guide-step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Restore the merged backup on your new phone</h4>
+            <p>After the merge finishes, you'll get a <strong>Merged Backup</strong> file and a <strong>Restore Guide</strong> to download. The full steps are in that guide, but here's a quick summary:</p>
+            <ul>
+              <li>Uninstall WhatsApp from your new phone</li>
+              <li>Connect the new phone to your PC via USB (File Transfer mode)</li>
+              <li>Copy <code style="color:#79c0ff">msgstore.db.crypt15</code> to the backup folder on the new phone:</li>
+            </ul>
+            <span class="path">Internal Storage &rarr; Android &rarr; media &rarr; com.whatsapp &rarr; WhatsApp &rarr; Backups</span>
+            <ul style="margin-top:.3rem">
+              <li>Re-install WhatsApp and verify your number</li>
+              <li>When asked to restore a backup — tap <strong>Restore</strong></li>
+              <li>Your full chat history (both phones merged) will appear</li>
+            </ul>
+            <div class="tip"><span class="ti">&#128161;</span><span>Copy your old photos and videos too — see the <em>Media Summary</em> download for exact folder paths.</span></div>
+            <div class="warn"><span>&#9888;&#65039;</span><span>Don't open WhatsApp until after you've placed the backup file — otherwise WhatsApp creates a fresh empty database and you'll lose the merge.</span></div>
+          </div>
+        </div>
+
+      </div><!-- guide-steps -->
+    </div><!-- guide-body -->
+  </div><!-- guide -->
+
+  <!-- Phone column headers (dates updated dynamically after Gate 1) -->
+  <div class="phone-cols">
+    <div class="phone-col-head" id="col-head-old">&#128241; Old phone</div>
+    <div class="phone-col-head" id="col-head-new">&#128241; New phone</div>
+  </div>
+
+  <!-- 4 drop zones -->
   <div class="grid">
     <div class="dropzone" id="dz-old-crypt" onclick="document.getElementById('f-old-crypt').click()">
       <input type="file" id="f-old-crypt" accept=".crypt15" style="display:none">
-      <div class="dz-icon">📦</div>
-      <div class="dz-label">Old Backup</div>
-      <div class="dz-hint">old_msgstore.db.crypt15 · 2015–2024</div>
+      <div class="dz-icon">&#128230;</div>
+      <div class="dz-label">Backup file</div>
+      <div class="dz-hint">The <code>.crypt15</code> file from<br>the old phone's Backups folder</div>
       <div class="dz-filename" id="fn-old-crypt"></div>
     </div>
-    <div class="dropzone" id="dz-old-key" onclick="document.getElementById('f-old-key').click()">
-      <input type="file" id="f-old-key" style="display:none">
-      <div class="dz-icon">🔑</div>
-      <div class="dz-label">Old Key</div>
-      <div class="dz-hint">binary .key or 64-char hex .txt</div>
-      <div class="dz-filename" id="fn-old-key"></div>
-    </div>
+
     <div class="dropzone" id="dz-new-crypt" onclick="document.getElementById('f-new-crypt').click()">
       <input type="file" id="f-new-crypt" accept=".crypt15" style="display:none">
-      <div class="dz-icon">📦</div>
-      <div class="dz-label">New Backup</div>
-      <div class="dz-hint">new_msgstore.db.crypt15 · 2025–2026</div>
+      <div class="dz-icon">&#128230;</div>
+      <div class="dz-label">Backup file</div>
+      <div class="dz-hint">The <code>.crypt15</code> file from<br>the new phone's Backups folder</div>
       <div class="dz-filename" id="fn-new-crypt"></div>
     </div>
+
+    <div class="dropzone" id="dz-old-key" onclick="document.getElementById('f-old-key').click()">
+      <input type="file" id="f-old-key" style="display:none">
+      <div class="dz-icon">&#128273;</div>
+      <div class="dz-label">Encryption key</div>
+      <div class="dz-hint">Exported from old phone:<br>WhatsApp &rarr; Settings &rarr; Chats &rarr; Chat Backup</div>
+      <div class="dz-filename" id="fn-old-key"></div>
+    </div>
+
     <div class="dropzone" id="dz-new-key" onclick="document.getElementById('f-new-key').click()">
       <input type="file" id="f-new-key" style="display:none">
-      <div class="dz-icon">🔑</div>
-      <div class="dz-label">New Key</div>
-      <div class="dz-hint">binary .key or 64-char hex .txt</div>
+      <div class="dz-icon">&#128273;</div>
+      <div class="dz-label">Encryption key</div>
+      <div class="dz-hint">Exported from new phone:<br>WhatsApp &rarr; Settings &rarr; Chats &rarr; Chat Backup</div>
       <div class="dz-filename" id="fn-new-key"></div>
     </div>
   </div>
 
-  <div class="opt-section">
-    <label>Old media folder path <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
-    <input type="text" id="old-media-path"
-           placeholder="e.g. C:\Users\You\WhatsApp_old_media  or  /sdcard/WhatsApp/Media">
-    <div class="hint">If provided, Phase 5 will cross-check media files and report coverage. Leave blank to skip.</div>
-  </div>
-
   <button id="btn-start" disabled onclick="startMerge()">Start Merge</button>
+  <p class="start-note">&#128274; All processing happens on this computer. Your messages never leave your machine.</p>
 
 </section>
 
-<!-- ── Process ── -->
+<!-- ── Process panel ── -->
 <section id="process-panel">
 
-  <!-- 6-phase stepper -->
-  <div class="phases" style="margin-top:1.4rem">
+  <div class="phases">
     <div class="phase-wrap"><div class="phase-dot" id="dot-1">1</div><div class="phase-label">Decrypt</div></div>
     <div class="phase-connector" id="conn-1"></div>
     <div class="phase-wrap"><div class="phase-dot" id="dot-2">2</div><div class="phase-label">Schema</div></div>
@@ -233,37 +410,57 @@ header p{color:var(--muted);font-size:.88rem;margin-top:.3rem}
     <div class="phase-wrap"><div class="phase-dot" id="dot-6">6</div><div class="phase-label">Playbook</div></div>
   </div>
 
-  <!-- Progress -->
-  <div class="progress-wrap" style="margin-top:1.1rem">
+  <div class="progress-wrap">
     <div class="progress-bar-outer"><div class="progress-bar-inner" id="pbar"></div></div>
-    <div class="progress-label" id="progress-label">Starting...</div>
+    <div class="progress-meta">
+      <div class="progress-label" id="progress-label">Starting...</div>
+      <div class="progress-eta" id="progress-eta"></div>
+    </div>
   </div>
 
-  <!-- Log -->
-  <div class="log-panel" id="log"></div>
+  <span class="log-toggle" onclick="toggleLog()">&#9660; Show technical log</span>
+  <div class="log-panel" id="log" style="display:none"></div>
 
-  <!-- Gate cards -->
   <div class="gates" id="gates"></div>
-
-  <!-- Error -->
   <div id="error-panel"></div>
 
 </section>
 
-<!-- ── Done ── -->
+<!-- ── Done panel ── -->
 <div id="done-panel">
   <div class="done-card">
-    <div style="font-size:2.2rem;margin-bottom:.5rem">&#10003;</div>
+    <div style="font-size:2rem;margin-bottom:.4rem">&#10003;</div>
     <h2>Merge Complete</h2>
     <p id="done-summary"></p>
     <div class="dl-grid" id="dl-grid"></div>
-    <button class="dl-btn-all" id="btn-dl-all">Download everything as .zip</button>
+    <button class="dl-btn-all" id="btn-dl-all">&#128230; Download everything as .zip</button>
   </div>
 </div>
 
 </div><!-- .wrap -->
-
 <script>
+// ── Guide ─────────────────────────────────────────────────────────────────────
+function toggleGuide() {
+  const body = document.getElementById("guide-body");
+  const chev = document.getElementById("guide-chev");
+  const open = body.classList.toggle("open");
+  body.style.display = open ? "block" : "none";
+  chev.classList.toggle("open", open);
+}
+// Start open
+document.getElementById("guide-body").style.display = "block";
+
+// ── Log toggle ────────────────────────────────────────────────────────────────
+let logVisible = false;
+function toggleLog() {
+  logVisible = !logVisible;
+  const log = document.getElementById("log");
+  const btn = document.querySelector(".log-toggle");
+  log.style.display = logVisible ? "block" : "none";
+  btn.textContent = (logVisible ? "▲ Hide" : "▼ Show") + " technical log";
+  if (logVisible) log.scrollTop = log.scrollHeight;
+}
+
 // ── File wiring ───────────────────────────────────────────────────────────────
 const FIELDS = ["old_crypt","old_key","new_crypt","new_key"];
 const files  = {};
@@ -273,6 +470,7 @@ FIELDS.forEach(f => {
   const inp = document.getElementById(`f-${fid}`);
   const dz  = document.getElementById(`dz-${fid}`);
   const fn  = document.getElementById(`fn-${fid}`);
+  if (!inp) return;
   inp.addEventListener("change", () => { if(inp.files[0]) pick(f, inp.files[0], dz, fn); });
   dz.addEventListener("dragover",  e => { e.preventDefault(); dz.classList.add("dragover"); });
   dz.addEventListener("dragleave", () => dz.classList.remove("dragover"));
@@ -285,7 +483,7 @@ FIELDS.forEach(f => {
 function pick(field, file, dz, fn) {
   files[field] = file;
   dz.classList.add("filled");
-  fn.textContent = file.name;
+  fn.textContent = "✓ " + file.name;
   checkReady();
 }
 function checkReady() {
@@ -294,21 +492,21 @@ function checkReady() {
 
 // ── Submit ────────────────────────────────────────────────────────────────────
 let jobId = null;
+let startTime = null;
 
 async function startMerge() {
   document.getElementById("upload-section").style.display = "none";
   document.getElementById("process-panel").style.display  = "block";
+  startTime = Date.now();
 
   const form = new FormData();
   form.append("old_crypt", files["old_crypt"]);
   form.append("old_key",   files["old_key"]);
   form.append("new_crypt", files["new_crypt"]);
   form.append("new_key",   files["new_key"]);
-  const mediaPath = document.getElementById("old-media-path").value.trim();
-  if (mediaPath) form.append("old_media_path", mediaPath);
 
   const res = await fetch("/start", { method:"POST", body:form });
-  if (!res.ok) { showError("Upload failed: " + await res.text()); return; }
+  if (!res.ok) { showError("Could not start: " + await res.text()); return; }
   const {job_id} = await res.json();
   jobId = job_id;
   listenSSE(job_id);
@@ -316,6 +514,14 @@ async function startMerge() {
 
 // ── SSE ───────────────────────────────────────────────────────────────────────
 const phaseNum = {phase1:1,phase2:2,phase3:3,phase4:4,phase5:5,phase6:6};
+const phaseLabel = {
+  phase1: "Unlocking your backups...",
+  phase2: "Checking compatibility...",
+  phase3: "Combining your messages...",
+  phase4: "Securing the merged backup...",
+  phase5: "Building your media list...",
+  phase6: "Writing restore guide...",
+};
 let currentPhase = 0;
 
 function listenSSE(id) {
@@ -332,14 +538,14 @@ function listenSSE(id) {
         if (pn > 1) markConn(pn-1, true);
         currentPhase = pn;
       }
-      // Scale pct across 6 phases
-      const globalPct = ((pn-1) + ev.pct/100) / 6 * 100;
-      setPbar(globalPct, ev.msg);
-      addLog(ev.msg, "info");
+      const globalPct = ((pn - 1) + ev.pct / 100) / 6 * 100;
+      const friendly = phaseLabel[ev.phase] || ev.msg;
+      setPbar(globalPct, friendly);
+      updateEta(globalPct);
+      addLog(ev.msg);
     }
 
     if (ev.type === "gate") {
-      addLog(`Gate ${ev.gate} ready`, "ok");
       window._gates = window._gates || {};
       window._gates[ev.gate] = ev.data;
       renderGate(ev.gate, ev.data);
@@ -347,20 +553,21 @@ function listenSSE(id) {
 
     if (ev.type === "done") {
       es.close();
-      for (let i = 1; i <= 6; i++) { markDot(i, "done"); markConn(i, true); }
+      for (let i = 1; i <= 6; i++) { markDot(i,"done"); markConn(i,true); }
       setPbar(100, "All done!");
-      addLog("Pipeline complete", "ok");
+      document.getElementById("progress-eta").textContent =
+        "Finished in " + elapsed();
       showDone();
     }
 
     if (ev.type === "error") {
       es.close();
       if (currentPhase > 0) markDot(currentPhase, "error");
-      addLog("ERROR: " + ev.message, "err");
+      addLog("ERROR: " + ev.message);
       showError(ev.message);
     }
   };
-  es.onerror = () => { addLog("Connection lost", "warn"); es.close(); };
+  es.onerror = () => { addLog("Connection lost"); es.close(); };
 }
 
 // ── UI helpers ────────────────────────────────────────────────────────────────
@@ -368,21 +575,41 @@ function setPbar(pct, label) {
   document.getElementById("pbar").style.width = Math.min(pct,100) + "%";
   document.getElementById("progress-label").textContent = label;
 }
-function addLog(msg, cls="info") {
+
+function updateEta(pct) {
+  if (!startTime || pct < 5) return;
+  const elapsed = (Date.now() - startTime) / 1000;
+  const total   = elapsed / (pct / 100);
+  const remain  = Math.max(0, total - elapsed);
+  const mins    = Math.floor(remain / 60);
+  const secs    = Math.round(remain % 60);
+  document.getElementById("progress-eta").textContent =
+    remain < 5 ? "Almost done..." :
+    mins > 0   ? `~${mins}m ${secs}s remaining` :
+                 `~${secs}s remaining`;
+}
+
+function elapsed() {
+  const s = Math.round((Date.now() - startTime) / 1000);
+  return s >= 60 ? `${Math.floor(s/60)}m ${s%60}s` : `${s}s`;
+}
+
+function addLog(msg) {
   const log = document.getElementById("log");
-  const d = document.createElement("div");
-  d.className = `log-line ${cls}`;
+  const d   = document.createElement("div");
+  d.className = "log-line info";
   d.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
   log.appendChild(d);
-  log.scrollTop = log.scrollHeight;
+  if (logVisible) log.scrollTop = log.scrollHeight;
 }
+
 function markDot(n, state) {
   const d = document.getElementById(`dot-${n}`);
   if (!d) return;
   d.classList.remove("active","done","error");
   d.classList.add(state);
-  if (state === "done") d.textContent = "v";
-  if (state === "error") d.textContent = "x";
+  if (state === "done")  d.textContent = "✓";
+  if (state === "error") d.textContent = "✕";
 }
 function markConn(n, done) {
   const c = document.getElementById(`conn-${n}`);
@@ -391,64 +618,83 @@ function markConn(n, done) {
 function showError(msg) {
   const p = document.getElementById("error-panel");
   p.style.display = "block";
-  p.textContent = "Error: " + msg;
+  p.innerHTML = `<strong>Something went wrong</strong><br><br>${msg}<br><br>` +
+    `<span style="color:var(--muted)">Click "Show technical log" above for details, ` +
+    `or restart and try again.</span>`;
 }
 
 function showDone() {
   document.getElementById("done-panel").style.display = "block";
   const g3 = (window._gates||{})[3] || {};
-  document.getElementById("done-summary").textContent = g3.total_messages
-    ? `${g3.total_messages.toLocaleString()} messages merged • ${g3.date_min} to ${g3.date_max}`
-    : "Your merged backup is ready.";
+  const g5 = (window._gates||{})[5] || {};
+  const parts = [];
+  if (g3.total_messages) parts.push(`${g3.total_messages.toLocaleString()} messages`);
+  if (g3.date_min && g3.date_max) parts.push(`${g3.date_min} to ${g3.date_max}`);
+  if (g5.old_media) parts.push(`${g5.old_media.toLocaleString()} media files catalogued`);
+  document.getElementById("done-summary").textContent =
+    parts.join(" · ") || "Your merged backup is ready.";
 
-  const files = [
-    {name:"msgstore.db.crypt15",  label:"Merged Backup",     primary:true},
-    {name:"media_manifest.csv",   label:"Media Manifest",    primary:false},
-    {name:"media_summary.md",     label:"Media Summary",     primary:false},
-    {name:"restore_playbook.md",  label:"Restore Playbook",  primary:false},
-    {name:"merge_report.md",      label:"Merge Report",      primary:false},
+  const dlFiles = [
+    {name:"msgstore.db.crypt15",  label:"Merged Backup",     icon:"&#11015;",  primary:true,  desc:"Drop this on your new phone"},
+    {name:"restore_playbook.md",  label:"Restore Guide",     icon:"&#128214;", primary:false, desc:"Step-by-step restore instructions"},
+    {name:"media_manifest.csv",   label:"Media File List",   icon:"&#128247;", primary:false, desc:"Every photo/video from old backup"},
+    {name:"media_summary.md",     label:"Media Summary",     icon:"&#128196;", primary:false, desc:"Folder sizes + transfer guide"},
+    {name:"merge_report.md",      label:"Merge Report",      icon:"&#128203;", primary:false, desc:"Full technical audit log"},
   ];
-  const grid = document.getElementById("dl-grid");
-  grid.innerHTML = files.map(f => `
-    <a class="dl-btn ${f.primary?'primary':''}"
-       href="/download/${jobId}/${f.name}" download="${f.name}">
-      ${f.primary ? "&#11015;" : "&#128196;"} ${f.label}
-    </a>`).join("");
+  document.getElementById("dl-grid").innerHTML = dlFiles.map(f =>
+    `<a class="dl-btn ${f.primary?'primary':''}" href="/download/${jobId}/${f.name}" download="${f.name}" title="${f.desc}">
+      ${f.icon} ${f.label}
+    </a>`
+  ).join("");
 
   document.getElementById("btn-dl-all").onclick = () => {
     window.location.href = `/download-all/${jobId}`;
   };
+  document.getElementById("done-panel").scrollIntoView({behavior:"smooth"});
 }
 
 // ── Gate renderers ────────────────────────────────────────────────────────────
 function renderGate(num, data) {
-  const titles = {
-    1:"Gate 1 — Decryption",
-    2:"Gate 2 — Schema Analysis",
-    3:"Gate 3 — Merge Statistics",
-    4:"Gate 4 — Re-encryption",
-    5:"Gate 5 — Media Reconciliation",
-    6:"Gate 6 — Restore Playbook",
+  const cfg = {
+    1:{title:"Decryption",       summary: d => `Old: ${fmt(d.old?.messages)} msgs · New: ${fmt(d.new?.messages)} msgs`},
+    2:{title:"Compatibility",    summary: d => `${(d.mergeable||[]).length} tables ready to merge`},
+    3:{title:"Merge complete",   summary: d => `${fmt(d.total_messages)} messages · ${d.date_min} to ${d.date_max}`},
+    4:{title:"Backup secured",   summary: d => `Output: ${fmtB(d.size)}`},
+    5:{title:"Media catalogue",  summary: d => `${fmt(d.old_media)} old files · ${fmtB(d.total_size)}`},
+    6:{title:"Restore guide",    summary: () => `restore_playbook.md written`},
   };
+  const c = cfg[num] || {title:`Gate ${num}`, summary:()=>""};
+
   const card = document.createElement("div");
   card.className = "gate-card active";
   card.innerHTML = `
     <div class="gate-header" onclick="toggleGate(${num})">
       <div class="gate-num">${num}</div>
-      <div class="gate-title">${titles[num]||'Gate '+num}</div>
-      <svg class="gate-chevron open" id="chev-${num}" viewBox="0 0 16 16" fill="currentColor">
+      <div class="gate-title">${c.title}</div>
+      <div class="gate-summary">${c.summary(data)}</div>
+      <svg class="gate-chevron" id="chev-${num}" viewBox="0 0 16 16" fill="currentColor">
         <path d="M4.427 6.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.25 6h-6.5a.25.25 0 00-.323.427z"/>
       </svg>
     </div>
-    <div class="gate-body open" id="gate-body-${num}">${buildBody(num,data)}</div>`;
+    <div class="gate-body" id="gate-body-${num}">${buildBody(num, data)}</div>`;
   document.getElementById("gates").appendChild(card);
 }
+
 function toggleGate(n) {
-  document.getElementById(`gate-body-${n}`).classList.toggle("open");
-  document.getElementById(`chev-${n}`).classList.toggle("open");
+  const body = document.getElementById(`gate-body-${n}`);
+  const chev = document.getElementById(`chev-${n}`);
+  const open = body.classList.toggle("open");
+  chev.classList.toggle("open", open);
 }
-function fmt(n){return (n||0).toLocaleString();}
-function fmtB(b){b=+b||0;if(b>1e9)return(b/1e9).toFixed(2)+' GB';if(b>1e6)return(b/1e6).toFixed(1)+' MB';return(b/1e3).toFixed(0)+' KB';}
+
+function fmt(n) { return (+(n||0)).toLocaleString(); }
+function fmtB(b) {
+  b = +b||0;
+  if (b>=1e9) return (b/1e9).toFixed(1)+" GB";
+  if (b>=1e6) return (b/1e6).toFixed(1)+" MB";
+  if (b>=1e3) return (b/1e3).toFixed(0)+" KB";
+  return b+" B";
+}
 
 function buildBody(n, d) {
   if(n===1) return gate1(d);
@@ -457,108 +703,107 @@ function buildBody(n, d) {
   if(n===4) return gate4(d);
   if(n===5) return gate5(d);
   if(n===6) return gate6(d);
-  return `<pre style="font-size:.75rem">${JSON.stringify(d,null,2)}</pre>`;
+  return "";
 }
 
 function gate1(d) {
-  const row = (label, s) => `<tr>
+  // Update phone column headers with real dates from the decrypted files
+  if (d.old && d.old.date_min && d.old.date_max) {
+    const el = document.getElementById("col-head-old");
+    if (el) el.innerHTML = `&#128241; Old phone &nbsp;(${d.old.date_min.slice(0,4)} &ndash; ${d.old.date_max.slice(0,4)})`;
+  }
+  if (d.new && d.new.date_min && d.new.date_max) {
+    const el = document.getElementById("col-head-new");
+    if (el) el.innerHTML = `&#128241; New phone &nbsp;(${d.new.date_min.slice(0,4)} &ndash; ${d.new.date_max.slice(0,4)})`;
+  }
+
+  const ok = s => `<span style="color:${s==='ok'?'#25d366':'#f85149'}">${s}</span>`;
+  const row = (label, s) => s ? `<tr>
     <td><b>${label}</b></td>
-    <td>${fmtB(s.size)}</td><td>${fmt(s.messages)}</td><td>${fmt(s.chats)}</td>
+    <td>${fmt(s.messages)} messages</td>
     <td>${s.date_min} to ${s.date_max}</td>
-    <td style="color:${s.integrity==='ok'?'#25d366':'#f85149'}">${s.integrity}</td>
-    <td>${s.user_version}</td></tr>`;
+    <td>${fmtB(s.size)}</td>
+    <td>${ok(s.integrity)}</td></tr>` : "";
   return `<table class="diff-table">
-    <tr><th>DB</th><th>Size</th><th>Messages</th><th>Chats</th><th>Date range</th><th>Integrity</th><th>Schema ver</th></tr>
-    ${row("Old (2015–2024)", d.old||{})}
-    ${row("New (2025–2026)", d.new||{})}
+    <tr><th>Backup</th><th>Messages</th><th>Date range</th><th>File size</th><th>Status</th></tr>
+    ${row("Old phone", d.old)}
+    ${row("New phone", d.new)}
   </table>`;
 }
 
 function gate2(d) {
-  let h = `<div class="stat-grid">
-    <div class="stat-box"><div class="val">${(d.mergeable||[]).length}</div><div class="lbl">Tables to merge</div></div>
-    <div class="stat-box"><div class="val">${(d.only_new||[]).length}</div><div class="lbl">New-only tables</div></div>
-    <div class="stat-box"><div class="val">${(d.only_old||[]).length}</div><div class="lbl">Old-only tables</div></div>
-    <div class="stat-box"><div class="val">${Object.keys(d.col_diffs||{}).length}</div><div class="lbl">Column changes</div></div>
-  </div>`;
-  if((d.only_new||[]).length)
-    h += `<p style="font-size:.78rem;color:var(--muted);margin:.6rem 0 .3rem">New-only tables:</p>
-          <p>${(d.only_new||[]).map(t=>`<span class="tag new">${t}</span>`).join(" ")}</p>`;
-  if((d.skipped||[]).length)
-    h += `<p style="font-size:.78rem;color:var(--muted);margin:.6rem 0 .3rem">Skipped (missing in one schema):</p>
-          <p>${(d.skipped||[]).map(t=>`<span class="tag old">${t}</span>`).join(" ")}</p>`;
-  if(Object.keys(d.col_diffs||{}).length) {
-    h += `<p style="font-size:.78rem;color:var(--muted);margin:.7rem 0 .3rem">Column-level changes:</p>
-          <table class="diff-table"><tr><th>Table</th><th>Added</th><th>Removed</th><th>Type changed</th></tr>`;
-    for(const [t,diff] of Object.entries(d.col_diffs||{})) {
+  const merged = (d.mergeable||[]).length;
+  const skipped = (d.skipped||[]).length;
+  let h = `<p style="font-size:.82rem;color:var(--muted);margin-bottom:.6rem">
+    Both backups are compatible. <strong style="color:var(--text)">${merged} data tables</strong> will be merged.
+    ${skipped ? `${skipped} tables exist in only one backup and will be skipped.` : ""}
+  </p>`;
+  if (Object.keys(d.col_diffs||{}).length) {
+    h += `<span class="tech-toggle" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">Show schema details</span>
+    <div style="display:none;margin-top:.4rem">
+    <table class="diff-table"><tr><th>Table</th><th>New columns</th><th>Removed columns</th></tr>`;
+    for (const [t,diff] of Object.entries(d.col_diffs||{}))
       h += `<tr><td><code>${t}</code></td>
         <td>${Object.keys(diff.added||{}).map(c=>`<span class="tag new">${c}</span>`).join(" ")||"&mdash;"}</td>
-        <td>${Object.keys(diff.removed||{}).map(c=>`<span class="tag old">${c}</span>`).join(" ")||"&mdash;"}</td>
-        <td>${Object.keys(diff.type_changed||{}).map(c=>`<span class="tag mod">${c}</span>`).join(" ")||"&mdash;"}</td></tr>`;
-    }
-    h += "</table>";
+        <td>${Object.keys(diff.removed||{}).map(c=>`<span class="tag old">${c}</span>`).join(" ")||"&mdash;"}</td></tr>`;
+    h += "</table></div>";
   }
   return h;
 }
 
 function gate3(d) {
+  const ok = d.integrity === "ok";
   let h = `<div class="stat-grid">
     <div class="stat-box"><div class="val">${fmt(d.total_messages)}</div><div class="lbl">Total messages</div></div>
     <div class="stat-box"><div class="val">${fmt(d.total_chats)}</div><div class="lbl">Chats</div></div>
-    <div class="stat-box"><div class="val">${d.date_min}</div><div class="lbl">Earliest</div></div>
-    <div class="stat-box"><div class="val">${d.date_max}</div><div class="lbl">Latest</div></div>
-    <div class="stat-box"><div class="val" style="color:${d.integrity==='ok'?'#25d366':'#f85149'}">${d.integrity}</div><div class="lbl">Integrity</div></div>
-    <div class="stat-box"><div class="val">${d.fk_violations}</div><div class="lbl">FK violations</div></div>
+    <div class="stat-box"><div class="val">${d.date_min}</div><div class="lbl">Oldest message</div></div>
+    <div class="stat-box"><div class="val">${d.date_max}</div><div class="lbl">Newest message</div></div>
+    <div class="stat-box"><div class="val" style="color:${ok?'#25d366':'#f85149'}">${ok?"All good":"Warning"}</div><div class="lbl">Integrity check</div></div>
   </div>
-  <p style="font-size:.78rem;color:var(--muted);margin:.4rem 0 .3rem">Messages per year:</p>
+  <p style="font-size:.78rem;color:var(--muted);margin:.3rem 0 .3rem">Messages per year:</p>
   <div class="year-grid">`;
-  for(const [yr,cnt] of Object.entries(d.per_year||{}).sort((a,b)=>a[0]-b[0]))
+  for (const [yr,cnt] of Object.entries(d.per_year||{}).sort((a,b)=>a[0]-b[0]))
     h += `<div class="year-box"><div class="yr">${yr}</div><div class="cnt">${fmt(cnt)}</div></div>`;
-  return h + "</div>";
+  return h + `</div>
+  ${d.fk_violations > 0 ? `<span class="tech-toggle" style="margin-top:.5rem">${d.fk_violations} minor internal references need attention (non-fatal)</span>` : ""}`;
 }
 
 function gate4(d) {
-  return `<div class="stat-grid">
-    <div class="stat-box"><div class="val" style="color:#25d366">Created</div><div class="lbl">Output file</div></div>
+  return `<p style="font-size:.84rem;margin-bottom:.5rem">
+    Your merged backup has been re-encrypted and is ready to restore on your new phone.
+  </p>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="val" style="color:#25d366">Ready</div><div class="lbl">msgstore.db.crypt15</div></div>
     <div class="stat-box"><div class="val">${fmtB(d.size)}</div><div class="lbl">File size</div></div>
-  </div>
-  <p style="font-size:.78rem;color:var(--muted);margin:.5rem 0">
-    <code style="color:var(--accent)">msgstore.db.crypt15</code> is ready to restore.
-  </p>`;
+  </div>`;
 }
 
 function gate5(d) {
-  let h = `<div class="stat-grid">
-    <div class="stat-box"><div class="val">${fmt(d.old_media)}</div><div class="lbl">Old-backup media files</div></div>
-    <div class="stat-box"><div class="val">${fmt(d.total_media)}</div><div class="lbl">Total media rows</div></div>
-    <div class="stat-box"><div class="val">${fmtB(d.total_size)}</div><div class="lbl">Est. transfer size</div></div>
-    ${d.coverage!=null?`<div class="stat-box"><div class="val" style="color:${d.coverage>=95?'#25d366':'#d29922'}">${d.coverage}%</div><div class="lbl">Files found on disk</div></div>`:''}
-  </div>`;
-  if(d.folders && Object.keys(d.folders).length) {
-    h += `<table class="diff-table" style="margin-top:.5rem">
-      <tr><th>Folder</th><th>Files</th><th>Size</th></tr>`;
-    const sorted = Object.entries(d.folders).sort((a,b)=>b[1].size-a[1].size);
-    for(const [folder,info] of sorted)
+  let h = `<p style="font-size:.84rem;margin-bottom:.6rem">
+    Found <strong>${fmt(d.old_media)}</strong> media files (photos, videos, voice notes, documents)
+    from the old backup — total <strong>${fmtB(d.total_size)}</strong>. These need to be copied
+    manually; see the <em>Restore Guide</em> for exact steps.
+  </p>`;
+  if (d.folders && Object.keys(d.folders).length) {
+    h += `<table class="diff-table">
+      <tr><th>Type</th><th>Files</th><th>Size</th></tr>`;
+    for (const [folder,info] of Object.entries(d.folders).sort((a,b)=>b[1].size-a[1].size))
       h += `<tr><td>${folder}</td><td>${fmt(info.count)}</td><td>${fmtB(info.size)}</td></tr>`;
     h += "</table>";
   }
-  h += `<p style="font-size:.78rem;color:var(--muted);margin:.6rem 0 0">
-    See <code>media_manifest.csv</code> for the full file list and <code>media_summary.md</code> for transfer instructions.
-  </p>`;
+  if (d.coverage != null)
+    h += `<p style="font-size:.78rem;margin-top:.5rem;color:${d.coverage>=95?'#25d366':'#d29922'}">
+      ${d.coverage}% of old media files were found in the folder you provided.
+    </p>`;
   return h;
 }
 
 function gate6(d) {
-  return `<div style="padding:.3rem 0">
-    <p style="color:var(--accent);font-weight:600;margin-bottom:.5rem">restore_playbook.md generated</p>
-    <p style="font-size:.82rem;color:var(--muted)">
-      Step-by-step guide covering safety backup, media transfer, backup file placement,
-      WhatsApp reinstall, troubleshooting, and a 5-point verification checklist.
-    </p>
-    <p style="font-size:.78rem;color:var(--muted);margin-top:.5rem">
-      Download it from the section below.
-    </p>
-  </div>`;
+  return `<p style="font-size:.84rem;color:var(--muted)">
+    A step-by-step restore guide has been written. Download it below &mdash; it covers
+    how to transfer media, place the backup file, reinstall WhatsApp, and verify
+    everything worked. It also includes a troubleshooting section in case anything goes wrong.
+  </p>`;
 }
 </script>
 </body>
