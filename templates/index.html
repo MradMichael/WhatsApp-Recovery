@@ -13,45 +13,50 @@
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   background:var(--bg);color:var(--text);min-height:100vh;padding:2rem 1rem}
-
-.wrap{max-width:860px;margin:0 auto}
+.wrap{max-width:900px;margin:0 auto}
 
 /* header */
 header{text-align:center;margin-bottom:2.5rem}
 .logo{display:flex;align-items:center;justify-content:center;gap:.7rem;margin-bottom:.5rem}
-.logo svg{width:38px;height:38px}
-header h1{font-size:1.6rem;font-weight:700}
-header p{color:var(--muted);font-size:.9rem;margin-top:.3rem}
-
-/* security badge */
+.logo svg{width:36px;height:36px}
+header h1{font-size:1.55rem;font-weight:700}
+header p{color:var(--muted);font-size:.88rem;margin-top:.3rem}
 .badge{display:inline-flex;align-items:center;gap:.4rem;background:#1f2937;
   border:1px solid #374151;border-radius:20px;padding:.3rem .8rem;
-  font-size:.78rem;color:#6ee7b7;margin-top:.7rem}
-.badge svg{width:13px;height:13px}
+  font-size:.76rem;color:#6ee7b7;margin-top:.6rem}
 
 /* upload grid */
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
 @media(max-width:540px){.grid{grid-template-columns:1fr}}
-
 .dropzone{
   background:var(--surface);border:2px dashed var(--border);
-  border-radius:var(--radius);padding:1.4rem 1rem;text-align:center;
+  border-radius:var(--radius);padding:1.3rem 1rem;text-align:center;
   cursor:pointer;transition:.2s;position:relative;
 }
 .dropzone:hover,.dropzone.dragover{border-color:var(--accent);background:#0d2318}
 .dropzone.filled{border-style:solid;border-color:var(--accent);background:#0d2318}
 .dropzone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.dz-icon{font-size:1.6rem;margin-bottom:.4rem}
-.dz-label{font-weight:600;font-size:.95rem;margin-bottom:.2rem}
-.dz-hint{color:var(--muted);font-size:.8rem}
-.dz-filename{color:var(--accent);font-size:.8rem;margin-top:.4rem;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dz-icon{font-size:1.5rem;margin-bottom:.3rem}
+.dz-label{font-weight:600;font-size:.92rem;margin-bottom:.15rem}
+.dz-hint{color:var(--muted);font-size:.76rem}
+.dz-filename{color:var(--accent);font-size:.76rem;margin-top:.35rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* optional media path */
+.opt-section{margin-bottom:1.2rem}
+.opt-section label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:.4rem}
+.opt-section input[type=text]{
+  width:100%;background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--radius);padding:.65rem .9rem;color:var(--text);
+  font-size:.88rem;outline:none;transition:.2s;
+}
+.opt-section input[type=text]:focus{border-color:var(--accent)}
+.opt-section .hint{font-size:.75rem;color:var(--muted);margin-top:.3rem}
 
 /* start button */
 #btn-start{
-  width:100%;padding:.85rem;border:none;border-radius:var(--radius);
+  width:100%;padding:.82rem;border:none;border-radius:var(--radius);
   background:var(--accent);color:#000;font-size:1rem;font-weight:700;
-  cursor:pointer;transition:.15s;
+  cursor:pointer;transition:.15s;margin-bottom:1.5rem;
 }
 #btn-start:hover:not(:disabled){background:#20b958}
 #btn-start:disabled{opacity:.35;cursor:not-allowed}
@@ -59,114 +64,91 @@ header p{color:var(--muted);font-size:.9rem;margin-top:.3rem}
 /* process panel */
 #process-panel{display:none}
 
-/* phase stepper */
-.phases{display:flex;align-items:center;margin-bottom:1.5rem}
-.phase-item{display:flex;align-items:center;flex:1}
+/* phase stepper — 6 phases */
+.phases{display:flex;align-items:flex-start;margin-bottom:1.4rem;overflow-x:auto;padding-bottom:.3rem}
+.phase-wrap{display:flex;flex-direction:column;align-items:center;min-width:60px}
 .phase-dot{
-  width:32px;height:32px;border-radius:50%;border:2px solid var(--border);
-  display:flex;align-items:center;justify-content:center;font-size:.75rem;
+  width:30px;height:30px;border-radius:50%;border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:.7rem;
   font-weight:700;flex-shrink:0;transition:.3s;
 }
 .phase-dot.active{border-color:var(--accent);background:#0d2318;color:var(--accent)}
 .phase-dot.done{border-color:var(--accent);background:var(--accent);color:#000}
 .phase-dot.error{border-color:var(--red);background:var(--red);color:#fff}
-.phase-connector{flex:1;height:2px;background:var(--border);margin:0 .3rem;transition:.3s}
+.phase-connector{flex:1;height:2px;background:var(--border);margin:14px .2rem 0;transition:.3s;min-width:16px}
 .phase-connector.done{background:var(--accent)}
-.phase-label{font-size:.72rem;color:var(--muted);margin-top:.3rem;text-align:center}
-.phase-wrap{display:flex;flex-direction:column;align-items:center;flex:1}
+.phase-label{font-size:.65rem;color:var(--muted);margin-top:.3rem;text-align:center;white-space:nowrap}
 
 /* progress bar */
 .progress-wrap{margin-bottom:1rem}
-.progress-bar-outer{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:20px;height:8px;overflow:hidden;
-}
-.progress-bar-inner{
-  height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));
-  border-radius:20px;width:0%;transition:width .4s ease;
-}
-.progress-label{font-size:.8rem;color:var(--muted);margin-top:.4rem}
+.progress-bar-outer{background:var(--surface);border:1px solid var(--border);border-radius:20px;height:7px;overflow:hidden}
+.progress-bar-inner{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:20px;width:0%;transition:width .4s ease}
+.progress-label{font-size:.78rem;color:var(--muted);margin-top:.4rem}
 
 /* log */
 .log-panel{
   background:#010409;border:1px solid var(--border);border-radius:var(--radius);
-  padding:1rem;height:200px;overflow-y:auto;font-family:'Courier New',monospace;
-  font-size:.78rem;margin-bottom:1.5rem;scroll-behavior:smooth;
+  padding:.9rem;height:180px;overflow-y:auto;font-family:'Courier New',monospace;
+  font-size:.75rem;margin-bottom:1.4rem;
 }
-.log-line{padding:.1rem 0;line-height:1.5}
-.log-line.info{color:#79c0ff}
-.log-line.ok{color:var(--accent)}
-.log-line.warn{color:var(--yellow)}
-.log-line.err{color:var(--red)}
+.log-line{padding:.08rem 0;line-height:1.5}
+.log-line.info{color:#79c0ff}.log-line.ok{color:var(--accent)}
+.log-line.warn{color:var(--yellow)}.log-line.err{color:var(--red)}
 
 /* gate cards */
-.gates{display:flex;flex-direction:column;gap:1rem}
-.gate-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);overflow:hidden;
-}
+.gates{display:flex;flex-direction:column;gap:.9rem}
+.gate-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
 .gate-card.active{border-color:var(--accent)}
-.gate-header{
-  display:flex;align-items:center;gap:.7rem;padding:.8rem 1rem;
-  cursor:pointer;user-select:none;
-}
+.gate-header{display:flex;align-items:center;gap:.7rem;padding:.75rem 1rem;cursor:pointer;user-select:none}
 .gate-header:hover{background:#1c2128}
-.gate-num{
-  width:24px;height:24px;border-radius:50%;background:var(--accent);
-  color:#000;font-size:.75rem;font-weight:700;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.gate-title{font-weight:600;font-size:.9rem;flex:1}
-.gate-chevron{color:var(--muted);transition:.2s}
+.gate-num{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#000;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.gate-title{font-weight:600;font-size:.88rem;flex:1}
+.gate-chevron{color:var(--muted);transition:.2s;width:16px;height:16px}
 .gate-chevron.open{transform:rotate(180deg)}
 .gate-body{padding:0 1rem 1rem;display:none}
 .gate-body.open{display:block}
 
-/* gate tables */
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem;margin-bottom:.8rem}
-.stat-box{background:#010409;border:1px solid var(--border);border-radius:8px;padding:.7rem .9rem}
-.stat-box .val{font-size:1.1rem;font-weight:700;color:var(--accent)}
-.stat-box .lbl{font-size:.72rem;color:var(--muted);margin-top:.1rem}
-.diff-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:.5rem}
-.diff-table th{text-align:left;padding:.4rem .6rem;color:var(--muted);
-  border-bottom:1px solid var(--border)}
-.diff-table td{padding:.35rem .6rem;border-bottom:1px solid #21262d}
+/* gate internals */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.7rem;margin-bottom:.8rem}
+.stat-box{background:#010409;border:1px solid var(--border);border-radius:8px;padding:.65rem .85rem}
+.stat-box .val{font-size:1rem;font-weight:700;color:var(--accent)}
+.stat-box .lbl{font-size:.7rem;color:var(--muted);margin-top:.1rem}
+.diff-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:.4rem}
+.diff-table th{text-align:left;padding:.35rem .5rem;color:var(--muted);border-bottom:1px solid var(--border)}
+.diff-table td{padding:.3rem .5rem;border-bottom:1px solid #21262d}
 .diff-table tr:last-child td{border:none}
-.tag{display:inline-block;padding:.1rem .45rem;border-radius:4px;font-size:.72rem;font-weight:600}
-.tag.new{background:#1f4a2f;color:#56d364}
-.tag.old{background:#3d1a1a;color:#f85149}
-.tag.mod{background:#3d2f00;color:#d29922}
-.year-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.5rem;margin-top:.6rem}
-.year-box{background:#010409;border:1px solid var(--border);border-radius:6px;
-  padding:.5rem .7rem;font-size:.8rem}
-.year-box .yr{color:var(--muted);font-size:.72rem}
-.year-box .cnt{font-weight:600;color:var(--text)}
+.tag{display:inline-block;padding:.1rem .4rem;border-radius:4px;font-size:.7rem;font-weight:600}
+.tag.new{background:#1f4a2f;color:#56d364}.tag.old{background:#3d1a1a;color:#f85149}.tag.mod{background:#3d2f00;color:#d29922}
+.year-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:.45rem;margin-top:.5rem}
+.year-box{background:#010409;border:1px solid var(--border);border-radius:6px;padding:.45rem .65rem;font-size:.78rem}
+.year-box .yr{color:var(--muted);font-size:.7rem}.year-box .cnt{font-weight:600}
 
 /* done panel */
-#done-panel{display:none;margin-top:1.5rem}
-.success-card{
-  background:linear-gradient(135deg,#0d2318,#082e1c);
-  border:1px solid var(--accent);border-radius:var(--radius);
-  padding:2rem;text-align:center;
+#done-panel{display:none;margin-top:1.4rem}
+.done-card{background:linear-gradient(135deg,#0d2318,#082e1c);border:1px solid var(--accent);border-radius:var(--radius);padding:1.8rem;text-align:center}
+.done-card h2{font-size:1.25rem;margin-bottom:.35rem}
+.done-card p{color:var(--muted);font-size:.85rem;margin-bottom:1.2rem}
+.dl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.7rem;margin-bottom:.9rem}
+.dl-btn{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.65rem 1rem;border:1.5px solid var(--accent);border-radius:var(--radius);
+  background:transparent;color:var(--accent);font-size:.85rem;font-weight:600;
+  cursor:pointer;transition:.15s;text-decoration:none;
 }
-.success-card h2{font-size:1.3rem;margin-bottom:.4rem}
-.success-card p{color:var(--muted);font-size:.88rem;margin-bottom:1.2rem}
-#btn-download{
-  padding:.75rem 2rem;border:none;border-radius:var(--radius);
-  background:var(--accent);color:#000;font-size:.95rem;font-weight:700;
+.dl-btn:hover{background:var(--accent);color:#000}
+.dl-btn.primary{background:var(--accent);color:#000;border-color:var(--accent)}
+.dl-btn.primary:hover{background:#20b958}
+.dl-btn-all{
+  width:100%;padding:.7rem;border:none;border-radius:var(--radius);
+  background:#1f2937;color:var(--text);font-size:.88rem;font-weight:600;
   cursor:pointer;transition:.15s;
 }
-#btn-download:hover{background:#20b958}
+.dl-btn-all:hover{background:#374151}
 
-/* error panel */
-#error-panel{
-  display:none;background:#1a0a0a;border:1px solid var(--red);
-  border-radius:var(--radius);padding:1.2rem;margin-top:1rem;
-  color:var(--red);font-size:.88rem;white-space:pre-wrap;
-}
+/* error */
+#error-panel{display:none;background:#1a0a0a;border:1px solid var(--red);border-radius:var(--radius);padding:1rem;margin-top:1rem;color:var(--red);font-size:.84rem;white-space:pre-wrap}
 
-/* scrollbar */
-::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 </style>
@@ -174,127 +156,110 @@ header p{color:var(--muted);font-size:.9rem;margin-top:.3rem}
 <body>
 <div class="wrap">
 
-  <header>
-    <div class="logo">
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="24" cy="24" r="24" fill="#25d366"/>
-        <path d="M34.5 13.5C32 11 28.2 9.5 24 9.5C15.4 9.5 8.5 16.4 8.5 25
-                 c0 2.7.7 5.3 2 7.6L8 40l7.1-1.9c2.2 1.2 4.6 1.8 7.1 1.8h.1
-                 c8.6 0 15.5-6.9 15.5-15.5 0-4.1-1.6-8-4.3-10.9z"
-              fill="white"/>
-        <path d="M24 37.5h-.1c-2.2 0-4.4-.6-6.3-1.7l-.5-.3-4.2 1.1 1.1-4.1-.3-.5
-                 c-1.2-1.9-1.9-4.1-1.9-6.5 0-6.7 5.4-12.1 12.2-12.1 3.2 0 6.3 1.3 8.6 3.5
-                 2.3 2.3 3.5 5.3 3.5 8.6-.1 6.7-5.5 12-12.1 12z"
-              fill="#25d366"/>
-        <path d="M30.4 27.5c-.4-.2-2.1-1-2.4-1.1-.3-.1-.6-.2-.8.2-.3.4-1 1.1-1.2 1.3
-                 -.2.2-.5.3-.9.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.3-2.2-2.7-.2-.4 0-.6.2-.8
-                 .2-.2.4-.5.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5-.1-.7-.1-.2-1-2.3-1.3-3.2
-                 -.4-.8-.7-.7-1-.7h-.7c-.3 0-.7.1-1 .4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3
-                 1.4 3.5c.2.2 2.4 3.7 5.8 5.2.8.4 1.4.6 1.9.7.8.3 1.5.2 2.1.1
-                 .6-.1 2-1 2.3-1.9.3-.9.3-1.6.2-1.8-.1-.2-.4-.3-.8-.5z"
-              fill="white"/>
-      </svg>
-      <h1>WhatsApp Backup Merger</h1>
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 48 48" fill="none">
+      <circle cx="24" cy="24" r="24" fill="#25d366"/>
+      <path d="M34.5 13.5C32 11 28.2 9.5 24 9.5C15.4 9.5 8.5 16.4 8.5 25c0 2.7.7 5.3 2 7.6L8 40l7.1-1.9c2.2 1.2 4.6 1.8 7.1 1.8h.1c8.6 0 15.5-6.9 15.5-15.5 0-4.1-1.6-8-4.3-10.9z" fill="white"/>
+      <path d="M24 37.5h-.1c-2.2 0-4.4-.6-6.3-1.7l-.5-.3-4.2 1.1 1.1-4.1-.3-.5c-1.2-1.9-1.9-4.1-1.9-6.5 0-6.7 5.4-12.1 12.2-12.1 3.2 0 6.3 1.3 8.6 3.5 2.3 2.3 3.5 5.3 3.5 8.6-.1 6.7-5.5 12-12.1 12z" fill="#25d366"/>
+      <path d="M30.4 27.5c-.4-.2-2.1-1-2.4-1.1-.3-.1-.6-.2-.8.2-.3.4-1 1.1-1.2 1.3-.2.2-.5.3-.9.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.3-2.2-2.7-.2-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5-.1-.7-.1-.2-1-2.3-1.3-3.2-.4-.8-.7-.7-1-.7h-.7c-.3 0-.7.1-1 .4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.8 5.2.8.4 1.4.6 1.9.7.8.3 1.5.2 2.1.1.6-.1 2-1 2.3-1.9.3-.9.3-1.6.2-1.8-.1-.2-.4-.3-.8-.5z" fill="white"/>
+    </svg>
+    <h1>WhatsApp Backup Merger</h1>
+  </div>
+  <p>Decrypt · Merge · Re-encrypt · Media plan · Restore guide</p>
+  <div class="badge">100% local — nothing leaves your machine</div>
+</header>
+
+<!-- ── Upload ── -->
+<section id="upload-section">
+
+  <div class="grid">
+    <div class="dropzone" id="dz-old-crypt" onclick="document.getElementById('f-old-crypt').click()">
+      <input type="file" id="f-old-crypt" accept=".crypt15" style="display:none">
+      <div class="dz-icon">📦</div>
+      <div class="dz-label">Old Backup</div>
+      <div class="dz-hint">old_msgstore.db.crypt15 · 2015–2024</div>
+      <div class="dz-filename" id="fn-old-crypt"></div>
     </div>
-    <p>Combine two crypt15 backups into a single 11-year history</p>
-    <div class="badge">
-      <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 2a1 1 0 110 2 1 1 0 010-2zm1 8H7v-5h2v5z"/></svg>
-      100% local — no data leaves your machine
+    <div class="dropzone" id="dz-old-key" onclick="document.getElementById('f-old-key').click()">
+      <input type="file" id="f-old-key" style="display:none">
+      <div class="dz-icon">🔑</div>
+      <div class="dz-label">Old Key</div>
+      <div class="dz-hint">binary .key or 64-char hex .txt</div>
+      <div class="dz-filename" id="fn-old-key"></div>
     </div>
-  </header>
-
-  <!-- ── Upload ── -->
-  <section id="upload-section">
-    <div class="grid">
-
-      <div class="dropzone" id="dz-old-crypt" onclick="document.getElementById('f-old-crypt').click()">
-        <input type="file" id="f-old-crypt" accept=".crypt15" style="display:none">
-        <div class="dz-icon">📦</div>
-        <div class="dz-label">Old Backup</div>
-        <div class="dz-hint">old_msgstore.db.crypt15<br>2015 – 2024</div>
-        <div class="dz-filename" id="fn-old-crypt"></div>
-      </div>
-
-      <div class="dropzone" id="dz-old-key" onclick="document.getElementById('f-old-key').click()">
-        <input type="file" id="f-old-key" style="display:none">
-        <div class="dz-icon">🔑</div>
-        <div class="dz-label">Old Key</div>
-        <div class="dz-hint">old_encrypted_backup.key</div>
-        <div class="dz-filename" id="fn-old-key"></div>
-      </div>
-
-      <div class="dropzone" id="dz-new-crypt" onclick="document.getElementById('f-new-crypt').click()">
-        <input type="file" id="f-new-crypt" accept=".crypt15" style="display:none">
-        <div class="dz-icon">📦</div>
-        <div class="dz-label">New Backup</div>
-        <div class="dz-hint">new_msgstore.db.crypt15<br>2025 – 2026</div>
-        <div class="dz-filename" id="fn-new-crypt"></div>
-      </div>
-
-      <div class="dropzone" id="dz-new-key" onclick="document.getElementById('f-new-key').click()">
-        <input type="file" id="f-new-key" style="display:none">
-        <div class="dz-icon">🔑</div>
-        <div class="dz-label">New Key</div>
-        <div class="dz-hint">new_encrypted_backup.key</div>
-        <div class="dz-filename" id="fn-new-key"></div>
-      </div>
-
+    <div class="dropzone" id="dz-new-crypt" onclick="document.getElementById('f-new-crypt').click()">
+      <input type="file" id="f-new-crypt" accept=".crypt15" style="display:none">
+      <div class="dz-icon">📦</div>
+      <div class="dz-label">New Backup</div>
+      <div class="dz-hint">new_msgstore.db.crypt15 · 2025–2026</div>
+      <div class="dz-filename" id="fn-new-crypt"></div>
     </div>
-    <button id="btn-start" disabled onclick="startMerge()">Start Merge</button>
-  </section>
-
-  <!-- ── Process ── -->
-  <section id="process-panel">
-
-    <!-- Phase stepper -->
-    <div class="phases" style="margin-top:1.5rem">
-      <div class="phase-wrap">
-        <div class="phase-dot" id="dot-1">1</div>
-        <div class="phase-label">Decrypt</div>
-      </div>
-      <div class="phase-connector" id="conn-1"></div>
-      <div class="phase-wrap">
-        <div class="phase-dot" id="dot-2">2</div>
-        <div class="phase-label">Schema</div>
-      </div>
-      <div class="phase-connector" id="conn-2"></div>
-      <div class="phase-wrap">
-        <div class="phase-dot" id="dot-3">3</div>
-        <div class="phase-label">Merge</div>
-      </div>
-      <div class="phase-connector" id="conn-3"></div>
-      <div class="phase-wrap">
-        <div class="phase-dot" id="dot-4">4</div>
-        <div class="phase-label">Encrypt</div>
-      </div>
-    </div>
-
-    <!-- Progress bar -->
-    <div class="progress-wrap" style="margin-top:1.2rem">
-      <div class="progress-bar-outer"><div class="progress-bar-inner" id="pbar"></div></div>
-      <div class="progress-label" id="progress-label">Starting…</div>
-    </div>
-
-    <!-- Live log -->
-    <div class="log-panel" id="log"></div>
-
-    <!-- Gate reports (expand as each completes) -->
-    <div class="gates" id="gates"></div>
-
-    <!-- Error -->
-    <div id="error-panel"></div>
-
-  </section>
-
-  <!-- ── Done ── -->
-  <div id="done-panel">
-    <div class="success-card">
-      <div style="font-size:2.5rem;margin-bottom:.5rem">✅</div>
-      <h2>Merge Complete</h2>
-      <p id="done-summary"></p>
-      <button id="btn-download">⬇ Download msgstore.db.crypt15</button>
+    <div class="dropzone" id="dz-new-key" onclick="document.getElementById('f-new-key').click()">
+      <input type="file" id="f-new-key" style="display:none">
+      <div class="dz-icon">🔑</div>
+      <div class="dz-label">New Key</div>
+      <div class="dz-hint">binary .key or 64-char hex .txt</div>
+      <div class="dz-filename" id="fn-new-key"></div>
     </div>
   </div>
+
+  <div class="opt-section">
+    <label>Old media folder path <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+    <input type="text" id="old-media-path"
+           placeholder="e.g. C:\Users\You\WhatsApp_old_media  or  /sdcard/WhatsApp/Media">
+    <div class="hint">If provided, Phase 5 will cross-check media files and report coverage. Leave blank to skip.</div>
+  </div>
+
+  <button id="btn-start" disabled onclick="startMerge()">Start Merge</button>
+
+</section>
+
+<!-- ── Process ── -->
+<section id="process-panel">
+
+  <!-- 6-phase stepper -->
+  <div class="phases" style="margin-top:1.4rem">
+    <div class="phase-wrap"><div class="phase-dot" id="dot-1">1</div><div class="phase-label">Decrypt</div></div>
+    <div class="phase-connector" id="conn-1"></div>
+    <div class="phase-wrap"><div class="phase-dot" id="dot-2">2</div><div class="phase-label">Schema</div></div>
+    <div class="phase-connector" id="conn-2"></div>
+    <div class="phase-wrap"><div class="phase-dot" id="dot-3">3</div><div class="phase-label">Merge</div></div>
+    <div class="phase-connector" id="conn-3"></div>
+    <div class="phase-wrap"><div class="phase-dot" id="dot-4">4</div><div class="phase-label">Encrypt</div></div>
+    <div class="phase-connector" id="conn-4"></div>
+    <div class="phase-wrap"><div class="phase-dot" id="dot-5">5</div><div class="phase-label">Media</div></div>
+    <div class="phase-connector" id="conn-5"></div>
+    <div class="phase-wrap"><div class="phase-dot" id="dot-6">6</div><div class="phase-label">Playbook</div></div>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-wrap" style="margin-top:1.1rem">
+    <div class="progress-bar-outer"><div class="progress-bar-inner" id="pbar"></div></div>
+    <div class="progress-label" id="progress-label">Starting...</div>
+  </div>
+
+  <!-- Log -->
+  <div class="log-panel" id="log"></div>
+
+  <!-- Gate cards -->
+  <div class="gates" id="gates"></div>
+
+  <!-- Error -->
+  <div id="error-panel"></div>
+
+</section>
+
+<!-- ── Done ── -->
+<div id="done-panel">
+  <div class="done-card">
+    <div style="font-size:2.2rem;margin-bottom:.5rem">&#10003;</div>
+    <h2>Merge Complete</h2>
+    <p id="done-summary"></p>
+    <div class="dl-grid" id="dl-grid"></div>
+    <button class="dl-btn-all" id="btn-dl-all">Download everything as .zip</button>
+  </div>
+</div>
 
 </div><!-- .wrap -->
 
@@ -304,22 +269,16 @@ const FIELDS = ["old_crypt","old_key","new_crypt","new_key"];
 const files  = {};
 
 FIELDS.forEach(f => {
-  const inp = document.getElementById(`f-${f.replace("_","-")}`);
-  const dz  = document.getElementById(`dz-${f.replace("_","-")}`);
-  const fn  = document.getElementById(`fn-${f.replace("_","-")}`);
-
-  inp.addEventListener("change", () => {
-    if (inp.files[0]) pick(f, inp.files[0], dz, fn);
-  });
-
-  // Drag-drop on the whole zone
-  dz.addEventListener("dragover",  e => { e.preventDefault(); dz.classList.add("dragover") });
+  const fid = f.replace(/_/g,"-");
+  const inp = document.getElementById(`f-${fid}`);
+  const dz  = document.getElementById(`dz-${fid}`);
+  const fn  = document.getElementById(`fn-${fid}`);
+  inp.addEventListener("change", () => { if(inp.files[0]) pick(f, inp.files[0], dz, fn); });
+  dz.addEventListener("dragover",  e => { e.preventDefault(); dz.classList.add("dragover"); });
   dz.addEventListener("dragleave", () => dz.classList.remove("dragover"));
   dz.addEventListener("drop", e => {
-    e.preventDefault();
-    dz.classList.remove("dragover");
-    const file = e.dataTransfer.files[0];
-    if (file) pick(f, file, dz, fn);
+    e.preventDefault(); dz.classList.remove("dragover");
+    if(e.dataTransfer.files[0]) pick(f, e.dataTransfer.files[0], dz, fn);
   });
 });
 
@@ -329,7 +288,6 @@ function pick(field, file, dz, fn) {
   fn.textContent = file.name;
   checkReady();
 }
-
 function checkReady() {
   document.getElementById("btn-start").disabled = FIELDS.some(f => !files[f]);
 }
@@ -346,20 +304,19 @@ async function startMerge() {
   form.append("old_key",   files["old_key"]);
   form.append("new_crypt", files["new_crypt"]);
   form.append("new_key",   files["new_key"]);
+  const mediaPath = document.getElementById("old-media-path").value.trim();
+  if (mediaPath) form.append("old_media_path", mediaPath);
 
   const res = await fetch("/start", { method:"POST", body:form });
-  if (!res.ok) {
-    showError("Upload failed: " + await res.text()); return;
-  }
+  if (!res.ok) { showError("Upload failed: " + await res.text()); return; }
   const {job_id} = await res.json();
   jobId = job_id;
   listenSSE(job_id);
 }
 
 // ── SSE ───────────────────────────────────────────────────────────────────────
-const phaseNum = {phase1:1, phase2:2, phase3:3, phase4:4};
+const phaseNum = {phase1:1,phase2:2,phase3:3,phase4:4,phase5:5,phase6:6};
 let currentPhase = 0;
-let globalPct = 0;   // 0-100 scaled across all 4 phases
 
 function listenSSE(id) {
   const es = new EventSource(`/events/${id}`);
@@ -372,24 +329,25 @@ function listenSSE(id) {
       if (pn !== currentPhase) {
         if (currentPhase > 0) markDot(currentPhase, "done");
         markDot(pn, "active");
-        if (pn > 1) markConn(pn - 1, true);
+        if (pn > 1) markConn(pn-1, true);
         currentPhase = pn;
       }
-      const base = (pn - 1) * 25;
-      globalPct = base + ev.pct * 0.25;
+      // Scale pct across 6 phases
+      const globalPct = ((pn-1) + ev.pct/100) / 6 * 100;
       setPbar(globalPct, ev.msg);
       addLog(ev.msg, "info");
     }
 
     if (ev.type === "gate") {
       addLog(`Gate ${ev.gate} ready`, "ok");
+      window._gates = window._gates || {};
+      window._gates[ev.gate] = ev.data;
       renderGate(ev.gate, ev.data);
     }
 
     if (ev.type === "done") {
       es.close();
-      markDot(4, "done");
-      markConn(3, true);
+      for (let i = 1; i <= 6; i++) { markDot(i, "done"); markConn(i, true); }
       setPbar(100, "All done!");
       addLog("Pipeline complete", "ok");
       showDone();
@@ -402,200 +360,205 @@ function listenSSE(id) {
       showError(ev.message);
     }
   };
-  es.onerror = () => {
-    addLog("Connection lost", "warn");
-    es.close();
-  };
+  es.onerror = () => { addLog("Connection lost", "warn"); es.close(); };
 }
 
 // ── UI helpers ────────────────────────────────────────────────────────────────
 function setPbar(pct, label) {
-  document.getElementById("pbar").style.width = pct + "%";
+  document.getElementById("pbar").style.width = Math.min(pct,100) + "%";
   document.getElementById("progress-label").textContent = label;
 }
-
-function addLog(msg, cls = "info") {
+function addLog(msg, cls="info") {
   const log = document.getElementById("log");
-  const d   = document.createElement("div");
+  const d = document.createElement("div");
   d.className = `log-line ${cls}`;
   d.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
   log.appendChild(d);
   log.scrollTop = log.scrollHeight;
 }
-
 function markDot(n, state) {
   const d = document.getElementById(`dot-${n}`);
   if (!d) return;
   d.classList.remove("active","done","error");
   d.classList.add(state);
-  if (state === "done") d.textContent = "✓";
-  if (state === "error") d.textContent = "✕";
+  if (state === "done") d.textContent = "v";
+  if (state === "error") d.textContent = "x";
 }
-
 function markConn(n, done) {
   const c = document.getElementById(`conn-${n}`);
   if (c && done) c.classList.add("done");
 }
-
-function showDone() {
-  document.getElementById("done-panel").style.display = "block";
-  const g3 = (window._gates || {})[3] || {};
-  const s = g3.total_messages
-    ? `${g3.total_messages.toLocaleString()} messages merged • ${g3.date_min} → ${g3.date_max}`
-    : "Your merged backup is ready.";
-  document.getElementById("done-summary").textContent = s;
-  document.getElementById("btn-download").onclick = () => {
-    window.location.href = `/download/${jobId}`;
-  };
-}
-
 function showError(msg) {
   const p = document.getElementById("error-panel");
   p.style.display = "block";
   p.textContent = "Error: " + msg;
 }
 
-// ── Gate renderers ────────────────────────────────────────────────────────────
-window._gates = {};
+function showDone() {
+  document.getElementById("done-panel").style.display = "block";
+  const g3 = (window._gates||{})[3] || {};
+  document.getElementById("done-summary").textContent = g3.total_messages
+    ? `${g3.total_messages.toLocaleString()} messages merged • ${g3.date_min} to ${g3.date_max}`
+    : "Your merged backup is ready.";
 
+  const files = [
+    {name:"msgstore.db.crypt15",  label:"Merged Backup",     primary:true},
+    {name:"media_manifest.csv",   label:"Media Manifest",    primary:false},
+    {name:"media_summary.md",     label:"Media Summary",     primary:false},
+    {name:"restore_playbook.md",  label:"Restore Playbook",  primary:false},
+    {name:"merge_report.md",      label:"Merge Report",      primary:false},
+  ];
+  const grid = document.getElementById("dl-grid");
+  grid.innerHTML = files.map(f => `
+    <a class="dl-btn ${f.primary?'primary':''}"
+       href="/download/${jobId}/${f.name}" download="${f.name}">
+      ${f.primary ? "&#11015;" : "&#128196;"} ${f.label}
+    </a>`).join("");
+
+  document.getElementById("btn-dl-all").onclick = () => {
+    window.location.href = `/download-all/${jobId}`;
+  };
+}
+
+// ── Gate renderers ────────────────────────────────────────────────────────────
 function renderGate(num, data) {
-  window._gates[num] = data;
-  const container = document.getElementById("gates");
+  const titles = {
+    1:"Gate 1 — Decryption",
+    2:"Gate 2 — Schema Analysis",
+    3:"Gate 3 — Merge Statistics",
+    4:"Gate 4 — Re-encryption",
+    5:"Gate 5 — Media Reconciliation",
+    6:"Gate 6 — Restore Playbook",
+  };
   const card = document.createElement("div");
   card.className = "gate-card active";
-  card.id = `gate-card-${num}`;
-
-  const titles = {
-    1: "Gate 1 — Decryption & Integrity",
-    2: "Gate 2 — Schema Analysis",
-    3: "Gate 3 — Merge Statistics",
-    4: "Gate 4 — Re-encryption",
-  };
-
   card.innerHTML = `
     <div class="gate-header" onclick="toggleGate(${num})">
       <div class="gate-num">${num}</div>
-      <div class="gate-title">${titles[num]}</div>
-      <svg class="gate-chevron open" id="chev-${num}" viewBox="0 0 16 16"
-           width="16" fill="currentColor">
-        <path d="M4.427 6.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396
-                 A.25.25 0 0011.25 6h-6.5a.25.25 0 00-.323.427z"/>
+      <div class="gate-title">${titles[num]||'Gate '+num}</div>
+      <svg class="gate-chevron open" id="chev-${num}" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M4.427 6.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.25 6h-6.5a.25.25 0 00-.323.427z"/>
       </svg>
     </div>
-    <div class="gate-body open" id="gate-body-${num}">
-      ${buildGateBody(num, data)}
-    </div>`;
+    <div class="gate-body open" id="gate-body-${num}">${buildBody(num,data)}</div>`;
+  document.getElementById("gates").appendChild(card);
+}
+function toggleGate(n) {
+  document.getElementById(`gate-body-${n}`).classList.toggle("open");
+  document.getElementById(`chev-${n}`).classList.toggle("open");
+}
+function fmt(n){return (n||0).toLocaleString();}
+function fmtB(b){b=+b||0;if(b>1e9)return(b/1e9).toFixed(2)+' GB';if(b>1e6)return(b/1e6).toFixed(1)+' MB';return(b/1e3).toFixed(0)+' KB';}
 
-  container.appendChild(card);
+function buildBody(n, d) {
+  if(n===1) return gate1(d);
+  if(n===2) return gate2(d);
+  if(n===3) return gate3(d);
+  if(n===4) return gate4(d);
+  if(n===5) return gate5(d);
+  if(n===6) return gate6(d);
+  return `<pre style="font-size:.75rem">${JSON.stringify(d,null,2)}</pre>`;
 }
 
-function toggleGate(num) {
-  const body  = document.getElementById(`gate-body-${num}`);
-  const chev  = document.getElementById(`chev-${num}`);
-  const open  = body.classList.toggle("open");
-  chev.classList.toggle("open", open);
+function gate1(d) {
+  const row = (label, s) => `<tr>
+    <td><b>${label}</b></td>
+    <td>${fmtB(s.size)}</td><td>${fmt(s.messages)}</td><td>${fmt(s.chats)}</td>
+    <td>${s.date_min} to ${s.date_max}</td>
+    <td style="color:${s.integrity==='ok'?'#25d366':'#f85149'}">${s.integrity}</td>
+    <td>${s.user_version}</td></tr>`;
+  return `<table class="diff-table">
+    <tr><th>DB</th><th>Size</th><th>Messages</th><th>Chats</th><th>Date range</th><th>Integrity</th><th>Schema ver</th></tr>
+    ${row("Old (2015–2024)", d.old||{})}
+    ${row("New (2025–2026)", d.new||{})}
+  </table>`;
 }
 
-function buildGateBody(num, data) {
-  if (num === 1) return gate1HTML(data);
-  if (num === 2) return gate2HTML(data);
-  if (num === 3) return gate3HTML(data);
-  if (num === 4) return gate4HTML(data);
-  return "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
-}
-
-function fmt(n) { return (n||0).toLocaleString(); }
-function fmtBytes(b) {
-  if (b > 1e9) return (b/1e9).toFixed(2) + " GB";
-  if (b > 1e6) return (b/1e6).toFixed(1) + " MB";
-  return (b/1e3).toFixed(0) + " KB";
-}
-
-function gate1HTML(d) {
-  const row = (db, s) => `
-    <tr>
-      <td><strong>${db}</strong></td>
-      <td>${fmtBytes(s.size)}</td>
-      <td>${fmt(s.messages)}</td>
-      <td>${fmt(s.chats)}</td>
-      <td>${s.date_min} → ${s.date_max}</td>
-      <td style="color:${s.integrity==='ok'?'#25d366':'#f85149'}">${s.integrity}</td>
-      <td>${s.user_version}</td>
-    </tr>`;
-  return `
-    <table class="diff-table">
-      <tr>
-        <th>DB</th><th>Size</th><th>Messages</th><th>Chats</th>
-        <th>Date range</th><th>Integrity</th><th>Schema ver</th>
-      </tr>
-      ${row("Old (2015–2024)", d.old)}
-      ${row("New (2025–2026)", d.new)}
-    </table>`;
-}
-
-function gate2HTML(d) {
-  let html = `<div class="stat-grid">
-    <div class="stat-box"><div class="val">${d.mergeable.length}</div><div class="lbl">Tables to merge</div></div>
-    <div class="stat-box"><div class="val">${d.only_new.length}</div><div class="lbl">New-only tables</div></div>
-    <div class="stat-box"><div class="val">${d.only_old.length}</div><div class="lbl">Old-only tables</div></div>
-    <div class="stat-box"><div class="val">${Object.keys(d.col_diffs).length}</div><div class="lbl">Tables with col changes</div></div>
+function gate2(d) {
+  let h = `<div class="stat-grid">
+    <div class="stat-box"><div class="val">${(d.mergeable||[]).length}</div><div class="lbl">Tables to merge</div></div>
+    <div class="stat-box"><div class="val">${(d.only_new||[]).length}</div><div class="lbl">New-only tables</div></div>
+    <div class="stat-box"><div class="val">${(d.only_old||[]).length}</div><div class="lbl">Old-only tables</div></div>
+    <div class="stat-box"><div class="val">${Object.keys(d.col_diffs||{}).length}</div><div class="lbl">Column changes</div></div>
   </div>`;
-
-  if (d.only_new.length) {
-    html += `<p style="font-size:.82rem;color:var(--muted);margin:.6rem 0 .3rem">
-      New tables (present in 2026 schema only):</p>
-      <p style="font-size:.8rem">${d.only_new.map(t => `<span class="tag new">${t}</span>`).join(" ")}</p>`;
-  }
-  if (d.skipped.length) {
-    html += `<p style="font-size:.82rem;color:var(--muted);margin:.6rem 0 .3rem">
-      Skipped (missing in one schema):</p>
-      <p style="font-size:.8rem">${d.skipped.map(t => `<span class="tag old">${t}</span>`).join(" ")}</p>`;
-  }
-  if (Object.keys(d.col_diffs).length) {
-    html += `<p style="font-size:.82rem;color:var(--muted);margin:.8rem 0 .3rem">Column-level changes:</p>
-      <table class="diff-table">
-        <tr><th>Table</th><th>Added cols</th><th>Removed cols</th><th>Type changes</th></tr>`;
-    for (const [tbl, diff] of Object.entries(d.col_diffs)) {
-      html += `<tr>
-        <td><code>${tbl}</code></td>
-        <td>${Object.keys(diff.added).map(c=>`<span class="tag new">${c}</span>`).join(" ") || "—"}</td>
-        <td>${Object.keys(diff.removed).map(c=>`<span class="tag old">${c}</span>`).join(" ") || "—"}</td>
-        <td>${Object.keys(diff.type_changed).map(c=>`<span class="tag mod">${c}</span>`).join(" ") || "—"}</td>
-      </tr>`;
+  if((d.only_new||[]).length)
+    h += `<p style="font-size:.78rem;color:var(--muted);margin:.6rem 0 .3rem">New-only tables:</p>
+          <p>${(d.only_new||[]).map(t=>`<span class="tag new">${t}</span>`).join(" ")}</p>`;
+  if((d.skipped||[]).length)
+    h += `<p style="font-size:.78rem;color:var(--muted);margin:.6rem 0 .3rem">Skipped (missing in one schema):</p>
+          <p>${(d.skipped||[]).map(t=>`<span class="tag old">${t}</span>`).join(" ")}</p>`;
+  if(Object.keys(d.col_diffs||{}).length) {
+    h += `<p style="font-size:.78rem;color:var(--muted);margin:.7rem 0 .3rem">Column-level changes:</p>
+          <table class="diff-table"><tr><th>Table</th><th>Added</th><th>Removed</th><th>Type changed</th></tr>`;
+    for(const [t,diff] of Object.entries(d.col_diffs||{})) {
+      h += `<tr><td><code>${t}</code></td>
+        <td>${Object.keys(diff.added||{}).map(c=>`<span class="tag new">${c}</span>`).join(" ")||"&mdash;"}</td>
+        <td>${Object.keys(diff.removed||{}).map(c=>`<span class="tag old">${c}</span>`).join(" ")||"&mdash;"}</td>
+        <td>${Object.keys(diff.type_changed||{}).map(c=>`<span class="tag mod">${c}</span>`).join(" ")||"&mdash;"}</td></tr>`;
     }
-    html += "</table>";
+    h += "</table>";
   }
-  return html;
+  return h;
 }
 
-function gate3HTML(d) {
-  let html = `<div class="stat-grid">
+function gate3(d) {
+  let h = `<div class="stat-grid">
     <div class="stat-box"><div class="val">${fmt(d.total_messages)}</div><div class="lbl">Total messages</div></div>
-    <div class="stat-box"><div class="val">${fmt(d.total_chats)}</div><div class="lbl">Total chats</div></div>
-    <div class="stat-box"><div class="val">${d.date_min}</div><div class="lbl">Earliest message</div></div>
-    <div class="stat-box"><div class="val">${d.date_max}</div><div class="lbl">Latest message</div></div>
-    <div class="stat-box"><div class="val" style="color:${d.integrity==='ok'?'#25d366':'#f85149'}">${d.integrity}</div><div class="lbl">Integrity check</div></div>
+    <div class="stat-box"><div class="val">${fmt(d.total_chats)}</div><div class="lbl">Chats</div></div>
+    <div class="stat-box"><div class="val">${d.date_min}</div><div class="lbl">Earliest</div></div>
+    <div class="stat-box"><div class="val">${d.date_max}</div><div class="lbl">Latest</div></div>
+    <div class="stat-box"><div class="val" style="color:${d.integrity==='ok'?'#25d366':'#f85149'}">${d.integrity}</div><div class="lbl">Integrity</div></div>
     <div class="stat-box"><div class="val">${d.fk_violations}</div><div class="lbl">FK violations</div></div>
   </div>
-  <p style="font-size:.82rem;color:var(--muted);margin:.5rem 0 .3rem">Messages per year:</p>
+  <p style="font-size:.78rem;color:var(--muted);margin:.4rem 0 .3rem">Messages per year:</p>
   <div class="year-grid">`;
-
-  for (const [yr, cnt] of Object.entries(d.per_year || {}).sort((a,b) => a[0]-b[0])) {
-    html += `<div class="year-box"><div class="yr">${yr}</div><div class="cnt">${fmt(cnt)}</div></div>`;
-  }
-  html += "</div>";
-  return html;
+  for(const [yr,cnt] of Object.entries(d.per_year||{}).sort((a,b)=>a[0]-b[0]))
+    h += `<div class="year-box"><div class="yr">${yr}</div><div class="cnt">${fmt(cnt)}</div></div>`;
+  return h + "</div>";
 }
 
-function gate4HTML(d) {
+function gate4(d) {
   return `<div class="stat-grid">
-    <div class="stat-box"><div class="val" style="color:#25d366">✓ Created</div><div class="lbl">Output file</div></div>
-    <div class="stat-box"><div class="val">${fmtBytes(d.size)}</div><div class="lbl">File size</div></div>
+    <div class="stat-box"><div class="val" style="color:#25d366">Created</div><div class="lbl">Output file</div></div>
+    <div class="stat-box"><div class="val">${fmtB(d.size)}</div><div class="lbl">File size</div></div>
   </div>
-  <p style="font-size:.82rem;color:var(--muted);margin:.5rem 0">
-    File: <code style="color:var(--accent)">msgstore.db.crypt15</code> —
-    drop this onto your new phone via Google Drive backup restore or ADB.
+  <p style="font-size:.78rem;color:var(--muted);margin:.5rem 0">
+    <code style="color:var(--accent)">msgstore.db.crypt15</code> is ready to restore.
   </p>`;
+}
+
+function gate5(d) {
+  let h = `<div class="stat-grid">
+    <div class="stat-box"><div class="val">${fmt(d.old_media)}</div><div class="lbl">Old-backup media files</div></div>
+    <div class="stat-box"><div class="val">${fmt(d.total_media)}</div><div class="lbl">Total media rows</div></div>
+    <div class="stat-box"><div class="val">${fmtB(d.total_size)}</div><div class="lbl">Est. transfer size</div></div>
+    ${d.coverage!=null?`<div class="stat-box"><div class="val" style="color:${d.coverage>=95?'#25d366':'#d29922'}">${d.coverage}%</div><div class="lbl">Files found on disk</div></div>`:''}
+  </div>`;
+  if(d.folders && Object.keys(d.folders).length) {
+    h += `<table class="diff-table" style="margin-top:.5rem">
+      <tr><th>Folder</th><th>Files</th><th>Size</th></tr>`;
+    const sorted = Object.entries(d.folders).sort((a,b)=>b[1].size-a[1].size);
+    for(const [folder,info] of sorted)
+      h += `<tr><td>${folder}</td><td>${fmt(info.count)}</td><td>${fmtB(info.size)}</td></tr>`;
+    h += "</table>";
+  }
+  h += `<p style="font-size:.78rem;color:var(--muted);margin:.6rem 0 0">
+    See <code>media_manifest.csv</code> for the full file list and <code>media_summary.md</code> for transfer instructions.
+  </p>`;
+  return h;
+}
+
+function gate6(d) {
+  return `<div style="padding:.3rem 0">
+    <p style="color:var(--accent);font-weight:600;margin-bottom:.5rem">restore_playbook.md generated</p>
+    <p style="font-size:.82rem;color:var(--muted)">
+      Step-by-step guide covering safety backup, media transfer, backup file placement,
+      WhatsApp reinstall, troubleshooting, and a 5-point verification checklist.
+    </p>
+    <p style="font-size:.78rem;color:var(--muted);margin-top:.5rem">
+      Download it from the section below.
+    </p>
+  </div>`;
 }
 </script>
 </body>

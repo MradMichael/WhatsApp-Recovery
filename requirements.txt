@@ -1,2 +1,2 @@
-flask>=3.0
-wa-crypt-tools>=0.9
+flask>=2.0
+wa-crypt-tools>=0.1.0
