@@ -1,19 +1,25 @@
-# Python
-venv/
+﻿# Python
 __pycache__/
 *.pyc
 *.pyo
-*.pyd
-.Python
+venv/
+.venv/
+*.egg-info/
 
-# Working dirs (contain decrypted DBs and keys — never commit)
+# Decrypted / merged databases (NEVER commit real WhatsApp data)
+output/*.db
+output/*.crypt15
+output/media_manifest.csv
+output/RESTORE.md
+output/merge_report.md
+
+# Input phone data (keys + backups MUST stay off git)
+old-phone/
+new-phone/
+old_media/
+
+# Flask session / job data
 jobs/
-output/
-
-# WhatsApp sensitive files — never commit
-*.db
-*.crypt15
-*.key
 
 # OS
 .DS_Store
